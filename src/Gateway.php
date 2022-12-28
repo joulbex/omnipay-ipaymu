@@ -1,8 +1,12 @@
 <?php
 
+	// TODO: Add 2nd method "Direct Payment"
+
 	namespace Omnipay\iPaymu;
 
 	use Omnipay\Common\AbstractGateway;
+	use Omnipay\iPaymu\Message\PurchaseRequest;
+	use Omnipay\iPaymu\Message\PurchaseResponse;
 
 	class Gateway extends AbstractGateway
 	{
@@ -23,25 +27,47 @@
         {
             parent::initialize($parameters);
 
-            // here initialize
-
             return $this;
         }
 
         /**
-	     * The purchase transaction.
+	     * The purchase transaction (Type 1: Redirect Payment).
 	     */
 	    public function purchase(array $parameters = [])
 	    {
-	        
+	        $request = $this->createRequest(PurchaseRequest::class, $options);
+
+        	return $request->send();
 	    }
 
 	    public function getDefaultParameters(): array
 	    {
 	        return [
-	            'accountId' => '',
+	            'accountId' => '', // aka "va"
 	            'apiKey'    => '',
 	            'testMode'  => true
 	        ];
+	    }
+
+	    // TEST: getter maybe not needed
+	    public function getAccountId()
+	    {
+	    	return $this->getParameter('accountId');
+	    }
+
+	    public function setAccountId(string $accountId)
+	    {
+	    	return $this->setParameter('accountId', $accountId);
+	    }
+
+	    // TEST: getter maybe not needed
+	    public function getApiKey()
+	    {
+	    	return $this->getParameter('apiKey');
+	    }
+
+	    public function setApiKey(string $apiKey)
+	    {
+	    	return $this->setParameter('apiKey', $apiKey);
 	    }
 	}

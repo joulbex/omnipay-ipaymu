@@ -2,9 +2,9 @@
 
 	namespace Omnipay\iPaymu;
 
-	use Omnipay\Common\Message\AbstractRequest;
+	use Omnipay\iPaymu\Message\AbstractIPaymuRequest;
 
-	class PurchaseRequest extends AbstractRequest
+	class PurchaseRequest extends AbstractIPaymuRequest
 	{
 		
 	}
