@@ -1,0 +1,39 @@
+{
+    "name": "joulbex/omnipay-ipaymu",
+    "type": "library",
+    "description": "iPaymu gateway for Omnipay payment processing library",
+    "keywords": [
+        "gateway",
+        "merchant",
+        "omnipay",
+        "pay",
+        "payment",
+        "ipaymu",
+        "purchase"
+    ],
+    "homepage": "https://github.com/joulbex/omnipay-ipaymu",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Alexander Meloch",
+            "email": "aleksander.meloch@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": { "Omnipay\\iPaymu\\" : "src/" }
+    },
+    "require": {
+        "php": "^7.2|^8.0",
+        "omnipay/common": "^2"
+    },
+    "require-dev": {
+        "omnipay/tests": "^4.1.2",
+        "squizlabs/php_codesniffer": "^3"
+    },
+    "scripts": {
+        "test": "phpunit",
+        "check-style": "phpcs -p --standard=PSR2 src/",
+        "fix-style": "phpcbf -p --standard=PSR2 src/"
+    },
+    "prefer-stable": true
+}
