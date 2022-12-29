@@ -35,9 +35,9 @@
 	     */
 	    public function purchase(array $parameters = [])
 	    {
-	        $request = $this->createRequest(PurchaseRequest::class, $options);
+	        $request = $this->createRequest(PurchaseRequest::class, $parameters);
 
-        	return $request->send();
+        	return $request;
 	    }
 
 	    public function getDefaultParameters(): array
