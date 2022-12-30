@@ -8,8 +8,38 @@
 	use Omnipay\iPaymu\Message\PurchaseRequest;
 	use Omnipay\iPaymu\Message\PurchaseResponse;
 
+	// use Guzzle\Http\HandlerStack;
+	// use Guzzle\Http\Middleware;
+	use Guzzle\Http\ClientInterface;
+	use Guzzle\Http\Client as HttpClient;
+
 	class Gateway extends AbstractGateway
 	{
+		private $container = [];
+
+		// tried to overwrite guzzle with custom instance
+		// https://github.com/guzzle/guzzle/issues/1688
+		/*public function __construct(ClientInterface $httpClient = null, HttpRequest $httpRequest = null)
+	    {
+			$history = Middleware::history($this->container);
+
+			$stack = HandlerStack::create();
+			// Add the history middleware to the handler stack.
+			$stack->push($history);
+
+	    	// pass custom Guzzle instance
+	        $httpClient = new HttpClient(
+	            '',
+	            array(
+	                'curl.options' => array(CURLOPT_CONNECTTIMEOUT => 60),
+	                'debug' => true,
+	                'handler' => $stack
+	            )
+	        );
+	        
+	        parent::__construct($httpClient, $httpRequest);
+	    }*/
+
 		/**
 	     * Get gateway display name
 	     */

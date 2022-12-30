@@ -3,6 +3,9 @@
 	namespace Omnipay\iPaymu\Message;
 
 	use Omnipay\Common\Message\AbstractRequest;
+	use Guzzle\Common\Event;
+	use GuzzleHttp\Middleware;
+	use GuzzleHttp\HandlerStack;
 
 	/**
 	 * This class holds all the common things for all of Ipaymu requests.
@@ -20,7 +23,22 @@
     	protected $baseSandboxEndpoint = 'https://sandbox.ipaymu.com/api/'; // base/version/endpoint
 
 		/**
-		 * NOTE: Maybe not needed. For check.
+	     * @return string
+	     */
+	    public function getApiKey()
+	    {
+	        return $this->getParameter('apiKey');
+	    }
+
+	    /**
+	     * @return string
+	     */
+	    public function setApiKey(string $apiKey)
+	    {
+	        return $this->setParameter('apiKey', $apiKey);
+	    }
+
+	    /**
 	     * @return string
 	     */
 	    public function getAccountId()
@@ -38,6 +56,9 @@
 	        return $this->setParameter('accountId', $accountId);
 	    }
 
+	    /**
+	     * @return string
+	     */
 	    public function getProduct()
 	    {
 	        return $this->getParameter('product');
@@ -77,13 +98,20 @@
 
 		/**
 		 * Generates request signature.
+		 * @see: https://github.com/ipaymu/ipaymu-php-api/blob/master/iPaymu/Traits/CurlTrait.php
+		 * @see: https://ipaymu-storage.s3.amazonaws.com/fdoc/api/payment-api-v2.pdf
 		 * @return string
  		 */
-		protected function createSignature()
+		protected function createSignature($method, $data)
 		{
-			// @see: https://github.com/ipaymu/ipaymu-php-api/blob/master/iPaymu/Traits/CurlTrait.php
-			// @see: https://ipaymu-storage.s3.amazonaws.com/fdoc/api/payment-api-v2.pdf
-			return 'wrong signature';
+			$body = json_encode($data, JSON_UNESCAPED_SLASHES);
+			$requestBody = strtolower(hash('sha256', $body));
+			$accountId = $this->getAccountId();
+	        $apiKey = $this->getApiKey();
+	        $stringToSign = $method . ':' . $accountId . ':' . $requestBody . ':' . $apiKey;
+	        $signature = hash_hmac('sha256', $stringToSign, $apiKey);
+
+	        return $signature;
 		}
 
 		/**
@@ -94,7 +122,7 @@
 	     */
 	    protected function sendRequest($method, $endpoint, array $data = null)
 	    {
-	    	$signature = $this->createSignature();
+	    	$signature = $this->createSignature($method, $data);
 
 	    	$headers = [
 	            'Content-Type: application/json',
@@ -110,6 +138,9 @@
 	            $response = $event['response'];
 
 	            if ($response->isError()) {
+
+	            	var_dump($response->getBody());
+	            	var_dump($response->getMessage());
 	                $event->stopPropagation();
 	            }
 	        });
@@ -123,8 +154,11 @@
 	            $method,
 	            $this->getBaseEndpoint() . $endpoint,
 	            $headers,
-	            $data
+	            $data,
+	            ['debug' => true]
 	        );
+
+	        var_dump($httpRequest->getQuery());
 
 	        return $httpRequest->send();
 	    }

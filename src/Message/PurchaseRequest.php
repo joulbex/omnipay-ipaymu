@@ -18,11 +18,12 @@
 
 	        $data                = array();
 	        // $data['amount']      = $this->getAmount();
-	        $data['price']      = $this->getPrice();
-	        $data['qty']      = $this->getQty();
+	        $data['account']      = $this->getAccountId();
+	        $data['price']      = [$this->getPrice()];
+	        $data['qty']      = [$this->getQty()];
 
-	        $data['product']     = $this->getProduct();
-	        $data['description'] = $this->getDescription();
+	        $data['product']     = [$this->getProduct()];
+	        $data['description'] = [$this->getDescription()];
 	        $data['returnUrl'] = $this->getReturnUrl();
 	        $data['cancelUrl'] = $this->getCancelUrl();
 	        $data['notifyUrl'] = $this->getNotifyUrl();
