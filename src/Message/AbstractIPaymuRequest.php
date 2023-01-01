@@ -4,8 +4,6 @@
 
 	use Omnipay\Common\Message\AbstractRequest;
 	use Guzzle\Common\Event;
-	use GuzzleHttp\Middleware;
-	use GuzzleHttp\HandlerStack;
 
 	/**
 	 * This class holds all the common things for all of Ipaymu requests.
@@ -124,11 +122,11 @@
 	    {
 	    	$signature = $this->createSignature($method, $data);
 
-	    	$headers = [
-	            'Content-Type: application/json',
-	            'va: ' . $this->getAccountId(), // va == accountId
-	            'signature: ' . $signature,
-	            'timestamp: ' . Date('YmdHis') // TODO: check this part
+	        $headers = [
+	            'Content-Type' => 'application/json',
+	            'va' => $this->getAccountId(), // va == accountId
+	            'signature' => $signature,
+	            'timestamp' => date('YmdHis')
 	        ];
 
 	        $this->httpClient->getEventDispatcher()->addListener('request.error', function (Event $event) {
@@ -137,16 +135,18 @@
 	             */
 	            $response = $event['response'];
 
+	            // var_dump($event);
+
 	            if ($response->isError()) {
 
-	            	var_dump($response->getBody());
+	            	// var_dump($response->getBody());
 	            	var_dump($response->getMessage());
 	                $event->stopPropagation();
 	            }
 	        });
 
 	        // var_dump($headers);
-	        // var_dump($data);
+	        // var_dump($method);
 	        // var_dump($this->getBaseEndpoint() . $endpoint);
 	        // exit;
 
@@ -155,10 +155,16 @@
 	            $this->getBaseEndpoint() . $endpoint,
 	            $headers,
 	            $data,
-	            ['debug' => true]
+	            //['debug' => true] // NOTE: don't know how this should work
 	        );
 
-	        var_dump($httpRequest->getQuery());
+	        // NOTE: Guzzle 3 sets Content-Type to application/x-www-form-urlencoded even if different is given in $headers
+	        // https://stackoverflow.com/questions/61933825/guzzle-3-x-how-to-set-content-type-application-json
+	        // https://guzzle3.readthedocs.io/http-client/request.html
+	        $httpRequest->setBody(json_encode($data), 'application/json');
+
+	        // $request->getBody()
+	        // var_dump($httpRequest->getBody());
 
 	        return $httpRequest->send();
 	    }

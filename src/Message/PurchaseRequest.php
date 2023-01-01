@@ -18,6 +18,7 @@
 
 	        $data                = array();
 	        // $data['amount']      = $this->getAmount();
+
 	        $data['account']      = $this->getAccountId();
 	        $data['price']      = [$this->getPrice()];
 	        $data['qty']      = [$this->getQty()];
@@ -27,6 +28,7 @@
 	        $data['returnUrl'] = $this->getReturnUrl();
 	        $data['cancelUrl'] = $this->getCancelUrl();
 	        $data['notifyUrl'] = $this->getNotifyUrl();
+
 	        // $data['method']      = $this->getPaymentMethod(); // ?
 	        // $data['metadata']    = $this->getMetadata();
 	        // if ($this->getTransactionId()) {
