@@ -7,6 +7,8 @@
 	use Omnipay\Common\AbstractGateway;
 	use Omnipay\iPaymu\Message\PurchaseRequest;
 	use Omnipay\iPaymu\Message\PurchaseResponse;
+	use Omnipay\iPaymu\Message\CompletePurchaseRequest;
+	use Omnipay\iPaymu\Message\CompletePurchaseResponse;
 
 	class Gateway extends AbstractGateway
 	{
@@ -38,6 +40,18 @@
 	        $request = $this->createRequest(PurchaseRequest::class, $parameters);
 
         	return $request;
+	    }
+
+	    /**
+	     * @param  array $parameters
+	     * @return CompletePurchaseRequest
+	     */
+	    public function completePurchase(array $parameters = [])
+	    {
+	        /** @var CompletePurchaseRequest $request */
+	        $request = $this->createRequest(CompletePurchaseRequest::class, $parameters);
+
+	        return $request;
 	    }
 
 	    public function getDefaultParameters(): array
