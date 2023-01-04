@@ -87,6 +87,95 @@
 	        return $this->setParameter('qty', $qty);
 	    }
 
+	    public function getBuyerName()
+	    {
+	        return $this->getParameter('buyerName');
+	    }
+
+	    public function setBuyerName(string $buyerName)
+	    {
+	        return $this->setParameter('buyerName', $buyerName);
+	    }
+
+	    public function getBuyerEmail()
+	    {
+	        return $this->getParameter('buyerEmail');
+	    }
+
+	    public function setBuyerEmail(string $buyerEmail)
+	    {
+	        return $this->setParameter('buyerEmail', $buyerEmail);
+	    }
+
+	    public function getBuyerPhone()
+	    {
+	        return $this->getParameter('buyerPhone');
+	    }
+
+	    public function setBuyerPhone(string $buyerPhone)
+	    {
+	        return $this->setParameter('buyerPhone', $buyerPhone);
+	    }
+
+	    public function getReferenceId()
+	    {
+	        return $this->getParameter('referenceId');
+	    }
+
+	    public function setReferenceId(string $referenceId)
+	    {
+	        return $this->setParameter('referenceId', $referenceId);
+	    }
+
+	    public function getWeight()
+	    {
+	        return $this->getParameter('weight');
+	    }
+
+	    public function setWeight(string $weight)
+	    {
+	        return $this->setParameter('weight', $weight);
+	    }
+
+	    public function getDimension()
+	    {
+	        return $this->getParameter('dimension');
+	    }
+
+	    public function setDimension(string $dimension)
+	    {
+	        return $this->setParameter('dimension', $dimension);
+	    }
+
+	    public function getPickupArea()
+	    {
+	        return $this->getParameter('pickupArea');
+	    }
+
+	    public function setPickupArea(string $pickupArea)
+	    {
+	        return $this->setParameter('pickupArea', $pickupArea);
+	    }
+
+	    public function getPickupAddress()
+	    {
+	        return $this->getParameter('pickupAddress');
+	    }
+
+	    public function setPickupAddress(string $pickupAddress)
+	    {
+	        return $this->setParameter('pickupAddress', $pickupAddress);
+	    }
+
+	    public function isCOD()
+	    {
+	        if ($this->getPaymentMethod()){
+	        	return $this->getPaymentMethod() == 'cod';
+	        }
+
+	        return false;
+	    }
+
 	    public function getBaseEndpoint()
 	    {
 	    	$base = $this->getTestMode() ? $this->baseSandboxEndpoint : $this->baseLiveEndpoint;

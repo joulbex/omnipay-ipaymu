@@ -16,10 +16,14 @@
 	    {
 	    	$this->validate('price', 'qty', 'product', 'description', 'returnUrl', 'cancelUrl', 'notifyUrl');
 
-	        $data                = array();
-	        // $data['amount']      = $this->getAmount();
+	    	if ($this->isCOD())
+	        {
+	        	$this->validate('weight', 'dimension', 'pickupArea', 'pickupAddress');
+	        }
 
-	        $data['account']      = $this->getAccountId();
+	        $data                = array();
+
+	        $data['account']      = $this->getAccountId(); // NOTE: Not in API docs, but official lib includes it. Is it required?
 	        $data['price']      = [$this->getPrice()];
 	        $data['qty']      = [$this->getQty()];
 
@@ -29,15 +33,54 @@
 	        $data['cancelUrl'] = $this->getCancelUrl();
 	        $data['notifyUrl'] = $this->getNotifyUrl();
 
-	        // $data['method']      = $this->getPaymentMethod(); // ?
-	        // $data['metadata']    = $this->getMetadata();
-	        // if ($this->getTransactionId()) {
-	        //     $data['metadata']['transactionId'] = $this->getTransactionId();
-	        // }
-	        // $issuer = $this->getIssuer();
-	        // if ($issuer) {
-	        //     $data['issuer'] = $issuer;
-	        // }
+	        if ($this->getBuyerName()) 
+	        {
+	            $data['buyerName'] = $this->getBuyerName();
+	        }
+
+	        if ($this->getBuyerEmail()) 
+	        {
+	            $data['buyerEmail'] = $this->getBuyerEmail();
+	        }
+
+	        if ($this->getBuyerPhone()) 
+	        {
+	            $data['buyerPhone'] = $this->getBuyerPhone();
+	        }
+
+	        if ($this->getReferenceId()) 
+	        {
+	            $data['referenceId'] = $this->getReferenceId();
+	        }
+
+	        if ($this->getPaymentMethod()) 
+	        {
+	            $data['paymentMethod'] = $this->getPaymentMethod();
+	        }
+
+	        // for COD
+	        if ($this->isCOD())
+	        {
+	        	if ($this->getWeight()) 
+		        {
+		            $data['weight'] = [$this->getWeight()];
+		        }
+
+		        if ($this->getDimension()) 
+		        {
+		            $data['dimension'] = [$this->getDimension()];
+		        }
+
+		        if ($this->getPickupArea()) 
+		        {
+		            $data['pickupArea'] = $this->getPickupArea();
+		        }
+
+		        if ($this->getPickupAddress()) 
+		        {
+		            $data['pickupAddress'] = $this->getPickupAddress();
+		        }
+	        }
 
 	        return $data;
 	    }
