@@ -31,7 +31,7 @@
 	    /**
 	     * @return string
 	     */
-	    public function setApiKey(string $apiKey)
+	    public function setApiKey($apiKey)
 	    {
 	        return $this->setParameter('apiKey', $apiKey);
 	    }
@@ -49,7 +49,7 @@
 	     * @param string $accountId
 	     * @return $this
 	     */
-	    public function setAccountId(string $accountId)
+	    public function setAccountId($accountId)
 	    {
 	        return $this->setParameter('accountId', $accountId);
 	    }
@@ -62,7 +62,7 @@
 	        return $this->getParameter('product');
 	    }
 
-	    public function setProduct(string $product)
+	    public function setProduct($product)
 	    {
 	        return $this->setParameter('product', $product);
 	    }
@@ -72,7 +72,7 @@
 	        return $this->getParameter('price');
 	    }
 
-	    public function setPrice(float $price)
+	    public function setPrice($price)
 	    {
 	        return $this->setParameter('price', $price);
 	    }
@@ -82,7 +82,7 @@
 	        return $this->getParameter('qty');
 	    }
 
-	    public function setQty(int $qty)
+	    public function setQty($qty)
 	    {
 	        return $this->setParameter('qty', $qty);
 	    }
@@ -92,7 +92,7 @@
 	        return $this->getParameter('buyerName');
 	    }
 
-	    public function setBuyerName(string $buyerName)
+	    public function setBuyerName($buyerName)
 	    {
 	        return $this->setParameter('buyerName', $buyerName);
 	    }
@@ -102,7 +102,7 @@
 	        return $this->getParameter('buyerEmail');
 	    }
 
-	    public function setBuyerEmail(string $buyerEmail)
+	    public function setBuyerEmail($buyerEmail)
 	    {
 	        return $this->setParameter('buyerEmail', $buyerEmail);
 	    }
@@ -112,7 +112,7 @@
 	        return $this->getParameter('buyerPhone');
 	    }
 
-	    public function setBuyerPhone(string $buyerPhone)
+	    public function setBuyerPhone($buyerPhone)
 	    {
 	        return $this->setParameter('buyerPhone', $buyerPhone);
 	    }
@@ -122,7 +122,7 @@
 	        return $this->getParameter('referenceId');
 	    }
 
-	    public function setReferenceId(string $referenceId)
+	    public function setReferenceId($referenceId)
 	    {
 	        return $this->setParameter('referenceId', $referenceId);
 	    }
@@ -132,7 +132,7 @@
 	        return $this->getParameter('weight');
 	    }
 
-	    public function setWeight(string $weight)
+	    public function setWeight($weight)
 	    {
 	        return $this->setParameter('weight', $weight);
 	    }
@@ -142,7 +142,7 @@
 	        return $this->getParameter('dimension');
 	    }
 
-	    public function setDimension(string $dimension)
+	    public function setDimension($dimension)
 	    {
 	        return $this->setParameter('dimension', $dimension);
 	    }
@@ -152,7 +152,7 @@
 	        return $this->getParameter('pickupArea');
 	    }
 
-	    public function setPickupArea(string $pickupArea)
+	    public function setPickupArea($pickupArea)
 	    {
 	        return $this->setParameter('pickupArea', $pickupArea);
 	    }
@@ -162,7 +162,7 @@
 	        return $this->getParameter('pickupAddress');
 	    }
 
-	    public function setPickupAddress(string $pickupAddress)
+	    public function setPickupAddress($pickupAddress)
 	    {
 	        return $this->setParameter('pickupAddress', $pickupAddress);
 	    }
@@ -211,12 +211,12 @@
 	    {
 	    	$signature = $this->createSignature($method, $data);
 
-	        $headers = [
-	            'Content-Type' => 'application/json',
+	        $headers = array(
+	        	'Content-Type' => 'application/json',
 	            'va' => $this->getAccountId(), // va == accountId
 	            'signature' => $signature,
 	            'timestamp' => date('YmdHis')
-	        ];
+	        );
 
 	        $this->httpClient->getEventDispatcher()->addListener('request.error', function (Event $event) {
 	            /**
@@ -243,8 +243,7 @@
 	            $method,
 	            $this->getBaseEndpoint() . $endpoint,
 	            $headers,
-	            $data,
-	            //['debug' => true] // NOTE: don't know how this should work
+	            $data
 	        );
 
 	        // NOTE: Guzzle 3 sets Content-Type to application/x-www-form-urlencoded even if different is given in $headers

@@ -23,7 +23,7 @@
         "psr-4": { "Omnipay\\iPaymu\\" : "src/" }
     },
     "require": {
-        "php": "^7.2|^8.0",
+        "php": ">=5.3.2",
         "omnipay/common": "^2"
     },
     "require-dev": {

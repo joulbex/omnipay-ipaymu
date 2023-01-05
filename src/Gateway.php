@@ -15,7 +15,7 @@
 		/**
 	     * Get gateway display name
 	     */
-	    public function getName(): string
+	    public function getName()
 	    {
 	        return 'iPaymu';
 	    }
@@ -25,7 +25,7 @@
          * @return $this|Gateway
          * @throws
          */
-        public function initialize(array $parameters = []): self
+        public function initialize(array $parameters = array())
         {
             parent::initialize($parameters);
 
@@ -35,7 +35,7 @@
         /**
 	     * The purchase transaction (Type 1: Redirect Payment).
 	     */
-	    public function purchase(array $parameters = [])
+	    public function purchase(array $parameters = array())
 	    {
 	        $request = $this->createRequest(PurchaseRequest::class, $parameters);
 
@@ -46,7 +46,7 @@
 	     * @param  array $parameters
 	     * @return CompletePurchaseRequest
 	     */
-	    public function completePurchase(array $parameters = [])
+	    public function completePurchase(array $parameters = array())
 	    {
 	        /** @var CompletePurchaseRequest $request */
 	        $request = $this->createRequest(CompletePurchaseRequest::class, $parameters);
@@ -54,13 +54,13 @@
 	        return $request;
 	    }
 
-	    public function getDefaultParameters(): array
+	    public function getDefaultParameters()
 	    {
-	        return [
-	            'accountId' => '', // aka "va"
+	        return array(
+	        	'accountId' => '', // aka "va"
 	            'apiKey'    => '',
 	            'testMode'  => true
-	        ];
+	        );
 	    }
 
 	    // TEST: getter maybe not needed
@@ -69,7 +69,7 @@
 	    	return $this->getParameter('accountId');
 	    }
 
-	    public function setAccountId(string $accountId)
+	    public function setAccountId($accountId)
 	    {
 	    	return $this->setParameter('accountId', $accountId);
 	    }
@@ -80,7 +80,7 @@
 	    	return $this->getParameter('apiKey');
 	    }
 
-	    public function setApiKey(string $apiKey)
+	    public function setApiKey($apiKey)
 	    {
 	    	return $this->setParameter('apiKey', $apiKey);
 	    }

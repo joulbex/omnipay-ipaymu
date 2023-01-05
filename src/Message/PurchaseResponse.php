@@ -53,6 +53,6 @@
 	     */
 	    public function getRedirectData()
 	    {
-	    	return [];
+	    	return array();
 	    }
 	}

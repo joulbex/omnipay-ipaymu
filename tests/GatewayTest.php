@@ -8,7 +8,7 @@
 	{
 		protected $gateway;
 
-	    public function setUp(): void
+	    public function setUp()
 	    {
 	        parent::setUp();
 

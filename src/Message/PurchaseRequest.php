@@ -24,11 +24,11 @@
 	        $data                = array();
 
 	        $data['account']      = $this->getAccountId(); // NOTE: Not in API docs, but official lib includes it. Is it required?
-	        $data['price']      = [$this->getPrice()];
-	        $data['qty']      = [$this->getQty()];
+	        $data['price']      = array($this->getPrice());
+	        $data['qty']      = array($this->getQty());
 
-	        $data['product']     = [$this->getProduct()];
-	        $data['description'] = [$this->getDescription()];
+	        $data['product']     = array($this->getProduct());
+	        $data['description'] = array($this->getDescription());
 	        $data['returnUrl'] = $this->getReturnUrl();
 	        $data['cancelUrl'] = $this->getCancelUrl();
 	        $data['notifyUrl'] = $this->getNotifyUrl();
@@ -63,12 +63,12 @@
 	        {
 	        	if ($this->getWeight()) 
 		        {
-		            $data['weight'] = [$this->getWeight()];
+		            $data['weight'] = array($this->getWeight());
 		        }
 
 		        if ($this->getDimension()) 
 		        {
-		            $data['dimension'] = [$this->getDimension()];
+		            $data['dimension'] = array($this->getDimension());
 		        }
 
 		        if ($this->getPickupArea()) 
