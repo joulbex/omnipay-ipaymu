@@ -6,9 +6,12 @@
 
 	use Omnipay\Common\AbstractGateway;
 	use Omnipay\iPaymu\Message\PurchaseRequest;
-	use Omnipay\iPaymu\Message\PurchaseResponse;
+	use Omnipay\iPaymu\Message\PurchaseResponse; // not needed?
 	use Omnipay\iPaymu\Message\CompletePurchaseRequest;
-	use Omnipay\iPaymu\Message\CompletePurchaseResponse;
+	use Omnipay\iPaymu\Message\CompletePurchaseResponse; // not needed?
+	use Omnipay\iPaymu\Message\CheckTransactionRequest;
+	use Omnipay\iPaymu\Message\CheckBalanceRequest;
+	use Omnipay\iPaymu\Message\IPaymuResponse; // not needed?
 
 	class Gateway extends AbstractGateway
 	{
@@ -50,6 +53,32 @@
 	    {
 	        /** @var CompletePurchaseRequest $request */
 	        $request = $this->createRequest(CompletePurchaseRequest::class, $parameters);
+
+	        return $request;
+	    }
+
+	    /**
+	     * NOTE: Is the name correct? Does Omnipay have any suggestions about this?
+	     * This part based on https://github.com/pay-now/omnipay-paynow/
+	     * @param  array $parameters
+	     * @return CheckTransactionRequest
+	     */
+	    public function checkTransaction(array $parameters = array())
+	    {
+	        /** @var CheckTransactionRequest $request */
+	        $request = $this->createRequest(CheckTransactionRequest::class, $parameters);
+
+	        return $request;
+	    }
+
+	    /**
+	     * @param  array $parameters
+	     * @return CheckBalanceRequest
+	     */
+	    public function checkBalance(array $parameters = array())
+	    {
+	        /** @var CheckBalanceRequest $request */
+	        $request = $this->createRequest(CheckBalanceRequest::class, $parameters);
 
 	        return $request;
 	    }

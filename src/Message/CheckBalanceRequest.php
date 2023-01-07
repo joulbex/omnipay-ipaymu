@@ -4,7 +4,7 @@
 
 	use Omnipay\iPaymu\Message\AbstractIPaymuRequest;
 
-	class CheckTransactionRequest extends AbstractIPaymuRequest
+	class CheckBalanceRequest extends AbstractIPaymuRequest
 	{
 		/**
 	     * Get the raw data array for this message. The format of this varies from gateway to
@@ -15,7 +15,7 @@
 	    public function getData()
 	    {
 	    	return array(
-	    		'transactionId' => $this->getTransactionReference()
+	    		'account' => $this->getAccountId()
 	    	);
 	    }
 	    
@@ -27,7 +27,7 @@
 	     */
 	    public function sendData($data)
 	    {
-	    	$httpResponse = $this->sendRequest('POST', '/transaction', $data);
+	    	$httpResponse = $this->sendRequest('POST', '/balance', $data);
 
         	return $this->response = new IPaymuResponse($this, $httpResponse->json());
 	    }
