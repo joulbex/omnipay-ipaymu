@@ -8,15 +8,12 @@
 	class PurchaseResponse extends AbstractResponse implements RedirectResponseInterface
 	{
 		/**
-	     * When you do a `purchase` the request is never successful because
-	     * you need to redirect off-site to complete the purchase.
-	     * TODO: Is this correct?
 	     *
 	     * {@inheritdoc}
 	     */
 	    public function isSuccessful()
 	    {
-	        return false;
+	        return isset($this->data['Status']) && $this->data['Status'] == 200;
 	    }
 
 	    public function isRedirect()

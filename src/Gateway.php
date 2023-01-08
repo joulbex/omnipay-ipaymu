@@ -23,6 +23,37 @@
 	        return 'iPaymu';
 	    }
 
+	    public function getDefaultParameters()
+	    {
+	        return array(
+	        	'accountId' => '', // aka "va"
+	            'apiKey'    => '',
+	            'testMode'  => true
+	        );
+	    }
+
+	    // TEST: getter maybe not needed
+	    public function getAccountId()
+	    {
+	    	return $this->getParameter('accountId');
+	    }
+
+	    public function setAccountId($accountId)
+	    {
+	    	return $this->setParameter('accountId', $accountId);
+	    }
+
+	    // TEST: getter maybe not needed
+	    public function getApiKey()
+	    {
+	    	return $this->getParameter('apiKey');
+	    }
+
+	    public function setApiKey($apiKey)
+	    {
+	    	return $this->setParameter('apiKey', $apiKey);
+	    }
+
 	    /**
          * @param array $parameters
          * @return $this|Gateway
@@ -81,36 +112,5 @@
 	        $request = $this->createRequest(CheckBalanceRequest::class, $parameters);
 
 	        return $request;
-	    }
-
-	    public function getDefaultParameters()
-	    {
-	        return array(
-	        	'accountId' => '', // aka "va"
-	            'apiKey'    => '',
-	            'testMode'  => true
-	        );
-	    }
-
-	    // TEST: getter maybe not needed
-	    public function getAccountId()
-	    {
-	    	return $this->getParameter('accountId');
-	    }
-
-	    public function setAccountId($accountId)
-	    {
-	    	return $this->setParameter('accountId', $accountId);
-	    }
-
-	    // TEST: getter maybe not needed
-	    public function getApiKey()
-	    {
-	    	return $this->getParameter('apiKey');
-	    }
-
-	    public function setApiKey($apiKey)
-	    {
-	    	return $this->setParameter('apiKey', $apiKey);
 	    }
 	}
