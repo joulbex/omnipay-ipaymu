@@ -23,7 +23,7 @@
 
 	        $data                = array();
 
-	        $data['account']      = $this->getAccountId(); // NOTE: Not in API docs, but official lib includes it. Is it required?
+	        // $data['account']      = $this->getAccountId(); // NOTE: Not in API docs, but official lib includes it. Is it required?
 	        $data['price']      = array($this->getPrice());
 	        $data['qty']      = array($this->getQty());
 
