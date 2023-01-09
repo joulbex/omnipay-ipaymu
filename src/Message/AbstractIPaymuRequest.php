@@ -117,6 +117,36 @@
 	        return $this->setParameter('buyerPhone', $buyerPhone);
 	    }
 
+	    public function getName()
+	    {
+	        return $this->getParameter('name');
+	    }
+
+	    public function setName($name)
+	    {
+	        return $this->setParameter('name', $name);
+	    }
+
+	    public function getEmail()
+	    {
+	        return $this->getParameter('email');
+	    }
+
+	    public function setEmail($email)
+	    {
+	        return $this->setParameter('email', $email);
+	    }
+
+	 	public function getPhone()
+	    {
+	        return $this->getParameter('phone');
+	    }
+
+	    public function setPhone($phone)
+	    {
+	        return $this->setParameter('phone', $phone);
+	    }
+
 	    public function getReferenceId()
 	    {
 	        return $this->getParameter('referenceId');
@@ -165,6 +195,16 @@
 	    public function setPickupAddress($pickupAddress)
 	    {
 	        return $this->setParameter('pickupAddress', $pickupAddress);
+	    }
+
+	    public function getPaymentChannel()
+	    {
+	        return $this->getParameter('paymentChannel');
+	    }
+
+	    public function setPaymentChannel($paymentChannel)
+	    {
+	        return $this->setParameter('paymentChannel', $paymentChannel);
 	    }
 
 	    public function isCOD()

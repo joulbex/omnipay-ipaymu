@@ -1,7 +1,5 @@
 <?php
 
-	// TODO: Add 2nd method "Direct Payment"
-
 	namespace Omnipay\iPaymu;
 
 	use Omnipay\Common\AbstractGateway;
@@ -13,6 +11,9 @@
 	use Omnipay\iPaymu\Message\CheckBalanceRequest;
 	use Omnipay\iPaymu\Message\IPaymuResponse; // not needed?
 
+	/**
+	 * Gateway for iPaymu off-site payment method
+	 */
 	class Gateway extends AbstractGateway
 	{
 		/**
@@ -67,7 +68,7 @@
         }
 
         /**
-	     * The purchase transaction (Type 1: Redirect Payment).
+	     * The purchase transaction.
 	     */
 	    public function purchase(array $parameters = array())
 	    {

@@ -19,6 +19,7 @@ composer require league/omnipay omnipay/paypal
 The following gateways are provided by this package:
 
 * iPaymu
+* iPaymu_Direct
 
 For general usage instructions, please see the main [Omnipay](https://github.com/thephpleague/omnipay)
 repository.
