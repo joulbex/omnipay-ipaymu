@@ -21,13 +21,13 @@
 	        	$this->validate('weight', 'dimension', 'pickupArea', 'pickupAddress');
 	        }
 
-	        $data                = array();
+	        $data = array();
 
-	        // $data['account']      = $this->getAccountId(); // NOTE: Not in API docs, but official lib includes it. Is it required?
-	        $data['price']      = array($this->getPrice());
-	        $data['qty']      = array($this->getQty());
+	        // $data['account'] = $this->getAccountId(); // NOTE: Not in API docs, but official lib includes it. Is it required?
+	        $data['price'] = array($this->getPrice());
+	        $data['qty'] = array($this->getQty());
 
-	        $data['product']     = array($this->getProduct());
+	        $data['product'] = array($this->getProduct());
 	        $data['description'] = array($this->getDescription());
 	        $data['returnUrl'] = $this->getReturnUrl();
 	        $data['cancelUrl'] = $this->getCancelUrl();

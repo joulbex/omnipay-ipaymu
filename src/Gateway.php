@@ -4,7 +4,7 @@
 
 	use Omnipay\Common\AbstractGateway;
 	use Omnipay\iPaymu\Message\PurchaseRequest;
-	use Omnipay\iPaymu\Message\PurchaseResponse; // not needed?
+	// use Omnipay\iPaymu\Message\PurchaseResponse; // not needed?
 	use Omnipay\iPaymu\Message\CompletePurchaseRequest;
 	use Omnipay\iPaymu\Message\CompletePurchaseResponse; // not needed?
 	use Omnipay\iPaymu\Message\CheckTransactionRequest;

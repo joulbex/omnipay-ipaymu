@@ -30,16 +30,4 @@
 
         	return $request;
 	    }
-
-	    /**
-	     * @param  array $parameters
-	     * @return CompletePurchaseRequest
-	     */
-	    public function completePurchase(array $parameters = array())
-	    {
-	        /** @var CompletePurchaseRequest $request */
-	        $request = $this->createRequest(CompletePurchaseRequest::class, $parameters);
-
-	        return $request;
-	    }
 	}

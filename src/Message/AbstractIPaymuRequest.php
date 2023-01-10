@@ -269,7 +269,7 @@
 	            if ($response->isError()) {
 
 	            	// var_dump($response->getBody());
-	            	var_dump($response->getMessage());
+	            	// var_dump($response->getMessage());
 	                $event->stopPropagation();
 	            }
 	        });
