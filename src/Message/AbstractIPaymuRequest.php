@@ -17,8 +17,8 @@
 	     */
 	    protected $apiVersion = 'v2';
 
-	    protected $baseLiveEndpoint = 'https://my.ipaymu.com/api/'; // base/version/endpoint
-    	protected $baseSandboxEndpoint = 'https://sandbox.ipaymu.com/api/'; // base/version/endpoint
+	    protected $baseLiveEndpoint = 'https://my.ipaymu.com/api/';
+    	protected $baseSandboxEndpoint = 'https://sandbox.ipaymu.com/api/';
 
 		/**
 	     * @return string
@@ -45,7 +45,6 @@
 	    }
 
 	    /**
-	     * NOTE: Maybe not needed. For check.
 	     * @param string $accountId
 	     * @return $this
 	     */
@@ -264,20 +263,10 @@
 	             */
 	            $response = $event['response'];
 
-	            // var_dump($event);
-
 	            if ($response->isError()) {
-
-	            	// var_dump($response->getBody());
-	            	// var_dump($response->getMessage());
 	                $event->stopPropagation();
 	            }
 	        });
-
-	        // var_dump($headers);
-	        // var_dump($method);
-	        // var_dump($this->getBaseEndpoint() . $endpoint);
-	        // exit;
 
 	        $httpRequest = $this->httpClient->createRequest(
 	            $method,
@@ -290,9 +279,6 @@
 	        // https://stackoverflow.com/questions/61933825/guzzle-3-x-how-to-set-content-type-application-json
 	        // https://guzzle3.readthedocs.io/http-client/request.html
 	        $httpRequest->setBody(json_encode($data), 'application/json');
-
-	        // $request->getBody()
-	        // var_dump($httpRequest->getBody());
 
 	        return $httpRequest->send();
 	    }

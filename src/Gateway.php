@@ -4,12 +4,9 @@
 
 	use Omnipay\Common\AbstractGateway;
 	use Omnipay\iPaymu\Message\PurchaseRequest;
-	// use Omnipay\iPaymu\Message\PurchaseResponse; // not needed?
 	use Omnipay\iPaymu\Message\CompletePurchaseRequest;
-	use Omnipay\iPaymu\Message\CompletePurchaseResponse; // not needed?
 	use Omnipay\iPaymu\Message\CheckTransactionRequest;
 	use Omnipay\iPaymu\Message\CheckBalanceRequest;
-	use Omnipay\iPaymu\Message\IPaymuResponse; // not needed?
 
 	/**
 	 * Gateway for iPaymu off-site payment method
@@ -33,7 +30,6 @@
 	        );
 	    }
 
-	    // TEST: getter maybe not needed
 	    public function getAccountId()
 	    {
 	    	return $this->getParameter('accountId');
@@ -44,7 +40,6 @@
 	    	return $this->setParameter('accountId', $accountId);
 	    }
 
-	    // TEST: getter maybe not needed
 	    public function getApiKey()
 	    {
 	    	return $this->getParameter('apiKey');

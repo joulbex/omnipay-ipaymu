@@ -38,10 +38,8 @@
 	        $data['qty'] = array($this->getQty());
 	        $data['amount'] = $this->getPrice() * $this->getQty();
 
-	        $data['product']     = array($this->getProduct());
+	        $data['product'] = array($this->getProduct());
 	        $data['description'] = array($this->getDescription());
-	        // $data['returnUrl'] = $this->getReturnUrl();
-	        // $data['cancelUrl'] = $this->getCancelUrl();
 	        $data['notifyUrl'] = $this->getNotifyUrl();
 
 	        if ($this->getName()) 
@@ -110,9 +108,6 @@
 	    public function sendData($data)
 	    {
 	    	$httpResponse = $this->sendRequest('POST', '/payment/direct', $data);
-
-	    	// var_dump($httpResponse->json());
-	    	// exit;
 
         	return $this->response = new PurchaseDirectResponse($this, $httpResponse->json());
 	    }

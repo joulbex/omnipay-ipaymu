@@ -2,8 +2,6 @@
 
 	namespace Omnipay\iPaymu\Message;
 
-	// use Omnipay\Common\Message\AbstractResponse;
-
 	class PurchaseDirectResponse extends IPaymuResponse
 	{
 		/**

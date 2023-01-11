@@ -6,7 +6,7 @@
 
 	class PurchaseRequestTest extends TestCase
 	{
-		/** @var RestPurchaseRequest */
+		/** @var PurchaseRequest */
     	protected $request;
     	protected $options;
 

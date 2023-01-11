@@ -3,10 +3,6 @@
 	namespace Omnipay\iPaymu;
 
 	use Omnipay\iPaymu\Message\PurchaseDirectRequest;
-	use Omnipay\iPaymu\Message\PurchaseDirectResponse; // not needed?
-	use Omnipay\iPaymu\Message\CompletePurchaseRequest;
-	use Omnipay\iPaymu\Message\CompletePurchaseResponse; // not needed?
-	use Omnipay\iPaymu\Message\IPaymuResponse; // not needed?
 
 	/**
 	 * Gateway for iPaymu Direct payment method

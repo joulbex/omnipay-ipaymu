@@ -2,7 +2,6 @@
 
 	namespace Omnipay\iPaymu\Message;
 
-	// use Omnipay\Common\Message\AbstractResponse;
 	use Omnipay\Common\Message\RedirectResponseInterface;
 
 	class PurchaseResponse extends IPaymuResponse implements RedirectResponseInterface
