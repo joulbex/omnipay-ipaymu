@@ -9,7 +9,58 @@
 	use Omnipay\iPaymu\Message\CheckBalanceRequest;
 
 	/**
-	 * Gateway for iPaymu off-site payment method
+	 * Gateway for iPaymu off-site payment method (with redirect).
+	 * 
+	 * ### Example
+	 *
+	 * #### Initialize Gateway
+	 *
+	 * <code>
+	 *   // Create a gateway
+	 *   $gateway = Omnipay::create('iPaymu');
+	 * 
+	 * 	 $gateway->initialize([
+	 *	      'accountId' => 'my_account_id', // aka "va"
+	 *		  'apiKey'    => 'my_api_key',
+	 *		  'testMode'  => true
+	 *	 ]); 
+	 * 
+	 * </code>
+	 *
+	 * #### Purchase
+	 * 
+	 * $params = [
+	 *      'product' => 'Test product',
+	 *      'qty' => '1',
+	 *      'price' => '10000.00',
+	 *      'description' => 'Test description',
+	 *      'notifyUrl' => 'http://localhost:8000/notify.php',
+	 *      'returnUrl' => 'http://localhost:8000/return.php',
+	 *      'cancelUrl' => 'http://localhost:8000/cancel.php',
+	 *      'buyerName' => 'John Doe', // optional
+	 *      'buyerEmail' => 'johndoe@example.com', // optional
+	 *      'buyerPhone' => '123456789', // optional
+	 *      'referenceId' => 'ABC1234', // optional
+	 *      'paymentMethod' => 'cod', // optional
+	 *      'weight' => '1', // optional, COD only
+	 *      'dimension' => '1:1:1', // optional, COD only
+	 *      'pickupArea' => '55555', // nullable, COD only
+	 *      'pickupAddress' => 'Jakarta', // nullable, COD only
+	 *   ];
+	 *
+	 *   $response = $gateway->purchase($params)->send();
+	 *
+	 *   if ($response->isRedirect()) {
+	 *   	// success
+	 *      $response->redirect(); 
+	 *   } else { 
+	 *		// error
+	 *      var_dump($response->getData());
+	 *      var_dump($response->getMessage());
+	 *      var_dump($response->getCode());
+	 *   }
+	 * 
+	 * @see https://documenter.getpostman.com/view/7508947/SWLfanD1?version=latest#0fe32da7-3bb8-43a3-8f7d-af1cee1ecaa3
 	 */
 	class Gateway extends AbstractGateway
 	{
