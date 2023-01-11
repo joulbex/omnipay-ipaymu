@@ -44,4 +44,18 @@
 	        
 	        return null;
 	    }
+
+	    /**
+	     * Returns Gateway Reference for transaction
+	     *
+	     * @return null|string A reference provided by the gateway to represent this transaction
+	     */
+	    public function getTransactionReference()
+	    {
+	    	if (isset($this->data['Data']['TransactionId'])){
+	    		return $this->data['Data']['TransactionId'];
+	    	}
+
+	    	return null;
+	    }
 	}
