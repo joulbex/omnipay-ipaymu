@@ -15,7 +15,7 @@
 
 	        $this->assertTrue($response->isSuccessful());
 	        // $this->assertSame('PAY-3TJ47806DA028052TKTQGVYI', $response->getTransactionReference());
-	        $this->assertNull($response->getMessage());
+	        $this->assertSame('success', $response->getMessage());
 
 	        $this->assertSame(array(), $response->getRedirectData());
 	        $this->assertSame('GET', $response->getRedirectMethod());
