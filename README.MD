@@ -2,29 +2,165 @@
 
 **iPaymu driver for the Omnipay PHP payment processing library**
 
+[![Unit Tests](https://github.com/joulbex/omnipay-ipaymu/actions/workflows/run-tests.yml/badge.svg)](https://github.com/joulbex/omnipay-ipaymu/actions/workflows/run-tests.yml)
+
 [Omnipay](https://github.com/thephpleague/omnipay) is a framework agnostic, multi-gateway payment
 processing library for PHP. This package implements iPaymu support for Omnipay.
 
 ## Installation
 
-Omnipay is installed via [Composer](http://getcomposer.org/). To install, simply require `league/omnipay` and `omnipay/paypal` with Composer:
+Omnipay is installed via [Composer](http://getcomposer.org/). To install, simply add it
+to your `composer.json` file:
 
-```
-composer require league/omnipay omnipay/paypal
+```json
+{
+    "require": {
+        "joulbex/omnipay-ipaymu": "~2.0"
+    }
+}
 ```
 
+or run:
+
+$ composer require "joulbex/omnipay-ipaymu: ~2.0"
 
 ## Basic Usage
 
 The following gateways are provided by this package:
 
-* iPaymu
-* iPaymu_Direct
+* iPaymu (off-site)
+* iPaymu_Direct (on-site, no credit card payment available)
 
 For general usage instructions, please see the main [Omnipay](https://github.com/thephpleague/omnipay)
 repository.
 
+## Test mode
+
+iPaymu offers sandbox mode for testing: https://sandbox.ipaymu.com/.
+After registration you can get sandbox credentials from https://sandbox.ipaymu.com/integration:
+
+va (virtual account)
+API Key
+
+Specific responses to notify endpoint can be simulated on https://sandbox.ipaymu.com/send-notify/.
+
+## Examples
+
+### Basic purchase using redirect method (supports credit cards)
+
+All options for $params you can check in official [API documentation](https://documenter.getpostman.com/view/7508947/SWLfanD1?version=latest#0fe32da7-3bb8-43a3-8f7d-af1cee1ecaa3).
+
+```php
+	use Omnipay\Omnipay;
+
+   	// initialize gateway
+   	$gateway = Omnipay::create('iPaymu');
+ 
+	$gateway->initialize([
+      	'accountId' => 'my_account_id', // aka "va"
+	  	'apiKey'    => 'my_api_key',
+	  	'testMode'  => true
+ 	]); 
+
+	$params = [
+	    'product' => 'Test product',
+	    'qty' => '1',
+	    'price' => '10000.00',
+	    'description' => 'Test description',
+	    'notifyUrl' => 'http://localhost:8000/notify.php',
+	    'returnUrl' => 'http://localhost:8000/return.php',
+	    'cancelUrl' => 'http://localhost:8000/cancel.php',
+	    // 'buyerName' => 'John Doe', // optional
+	    // 'buyerEmail' => 'johndoe@example.com', // optional
+	    // 'buyerPhone' => '123456789', // optional
+	    // 'referenceId' => 'ABC1234', // optional
+	    // 'paymentMethod' => 'cod', // optional
+	    // 'weight' => '1', // optional, COD only
+	    // 'dimension' => '1:1:1', // optional, COD only
+	   	// 'pickupArea' => '55555', // nullable, COD only
+	    // 'pickupAddress' => 'Jakarta', // nullable, COD only
+	];
+
+   	$response = $gateway->purchase($params)->send();
+
+   	if ($response->isRedirect()) {
+   		// success, redirect to iPaymu
+      	$response->redirect(); 
+   	} else { 
+		// error
+      	var_dump($response->getData());
+      	var_dump($response->getMessage());
+      	var_dump($response->getCode());
+   	}
+```
+
+### Basic purchase using direct method (on site, no credit cards)
+
+All options for $params you can check in official [API documentation](https://documenter.getpostman.com/view/7508947/SWLfanD1?version=latest#79e948f6-66b0-4d45-be63-6320f020c834).
+
+```php
+	use Omnipay\Omnipay;
+
+	// initialize gateway
+   	$gateway = Omnipay::create('iPaymu_Direct');
+ 
+ 	$gateway->initialize([
+	    'accountId' => 'my_account_id', // aka "va"
+		'apiKey'    => 'my_api_key',
+		'testMode'  => true
+	]); 
+	
+	$params = [
+	    'product' => 'Test product',
+	    'qty' => '1',
+	    'price' => '10000.00',
+	    'description' => 'Test description',
+	 	'paymentMethod' => 'qris',
+	 	'paymentChannel' => 'qris',
+	    'notifyUrl' => 'http://localhost:8000/notify.php',
+	    'name' => 'John Doe',
+	   	'email' => 'johndoe@example.com',
+	    'phone' => '123456789',
+	    // 'referenceId' => 'ABC1234', // optional
+	    // 'weight' => '1', // optional, COD only
+	    // 'dimension' => '1:1:1', // optional, COD only
+	    // 'pickupArea' => '55555', // nullable, COD only
+	    // 'pickupAddress' => 'Jakarta', // nullable, COD only
+	];
+	
+   	$response = $gateway->purchase($params)->send();
+
+   	if ($response->isSuccess()) {
+   		// success
+   		// get full response, for more specific methods see below
+      	$data = $response->getData(); 
+   	} else { 
+		// error
+      	var_dump($response->getData());
+      	var_dump($response->getMessage());
+      	var_dump($response->getCode());
+   	}
+```
+
+For this method additional methods are available in response object:
+
+- general:
+
+```php
+	$expirationDate = $response->getExpiryDate(); // time when payment expires
+	$paymentCode = $response->getPaymentCode(); // payment code
+```
+
+- getting QR code (QRIS only):
+
+```php
+	$qrCode = $response->getQRCodeUrl(); // QR code image
+	$qrCodeTemplate = $response->getQRTemplateUrl(); // QR code with additional html generated by iPaymu
+```
+
+- cstore methods (TODO)
+
 ## Support
 
-If you believe you have found a bug, please report it using the [GitHub issue tracker](https://github.com/thephpleague/omnipay-ipaymu/issues),
+If you believe you have found a bug, please report it using the [GitHub issue tracker](https://github.com/joulbex/omnipay-ipaymu/issues),
 or better yet, fork the library and submit a pull request.
