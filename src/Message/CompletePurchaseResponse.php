@@ -6,13 +6,18 @@
 
 	class CompletePurchaseResponse extends AbstractResponse
 	{
+		/**
+	     * Is the payment successful?
+	     *
+	     * @return boolean
+	     */
 		public function isSuccessful()
 	    {
 	        return isset($this->data['status_code']) && (int)$this->data['status_code'] == 1;
 	    }
 
 	    /**
-	     * Is the response successful?
+	     * Is the payment pending?
 	     *
 	     * @return boolean
 	     */
@@ -22,13 +27,13 @@
 	    }
 
 	    /**
-	     * Is the transaction cancelled by the user?
+	     * Is the transaction cancelled by the user or expired?
 	     *
 	     * @return boolean
 	     */
 	    public function isCancelled()
 	    {
-	        return isset($this->data['status_code']) && (int)$this->data['status_code'] == 2; // NOTE: 2 is "expired"
+	        return isset($this->data['status_code']) && (int)$this->data['status_code'] == -2;
 	    }
 
 	    /**
@@ -57,7 +62,6 @@
 
 	    /**
 	     * Gateway Reference
-	     * NOTE: Gateway returns also "sid" (Session ID)
 	     *
 	     * @return null|string A reference provided by the gateway to represent this transaction
 	     */
@@ -66,6 +70,8 @@
 	    	if (isset($this->data['trx_id'])){
 	    		return $this->data['trx_id'];
 	    	}
+
+	    	return null;
 	    }
 
 	    /**
@@ -73,8 +79,22 @@
 	     *
 	     * @return string
 	     */
-	    /*public function getTransactionId()
+	    public function getTransactionId()
 	    {
-	        
-	    }*/
+	        if (isset($this->data['reference_id'])){
+	    		return $this->data['reference_id'];
+	    	}
+	    }
+
+	    /**
+	     * Get the session ID (used only in payment redirect method)
+	     *
+	     * @return string
+	     */
+	    public function getSessionId()
+	    {
+	        if (isset($this->data['sid'])){
+	    		return $this->data['sid'];
+	    	}
+	    }
 	}

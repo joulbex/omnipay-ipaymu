@@ -19,15 +19,12 @@
 	    
 	    /**
 	     * Send the request with specified data
-	     * NOTE: Can leave it like this? Or additional request should be sent? Check what other gateways do.
 	     *
 	     * @param  mixed $data The data to send
 	     * @return ResponseInterface
 	     */
 	    public function sendData($data)
 	    {
-	    	// $httpResponse = $this->sendRequest('POST', '/payment', $data);
-
         	return $this->response = new CompletePurchaseResponse($this, $data);
 	    }
 	}

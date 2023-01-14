@@ -3,6 +3,7 @@
 	namespace Omnipay\iPaymu;
 
 	use Omnipay\iPaymu\Message\PurchaseDirectRequest;
+	use Omnipay\iPaymu\Message\CompletePurchaseRequest;
 
 	/**
 	 * Gateway for iPaymu on-site payment method (without redirect).
@@ -76,5 +77,17 @@
 	        $request = $this->createRequest(PurchaseDirectRequest::class, $parameters);
 
         	return $request;
+	    }
+
+	    /**
+	     * @param  array $parameters
+	     * @return CompletePurchaseRequest
+	     */
+	    public function completePurchase(array $parameters = array())
+	    {
+	        /** @var CompletePurchaseRequest $request */
+	        $request = $this->createRequest(CompletePurchaseRequest::class, $parameters);
+
+	        return $request;
 	    }
 	}
