@@ -35,7 +35,7 @@
 	        $this->gateway = new Gateway($this->getHttpClient(), $this->getHttpRequest());
 	    }
 
-	    public function testPurchase()
+	    public function testPurchaseSuccess()
 	    {
 	    	$this->setMockHttpResponse('PurchaseSuccess.txt');
 
@@ -45,6 +45,23 @@
 	        // $this->assertSame('10000', $response->getPrice());
 	        $this->assertTrue($response->isSuccessful());
 	        $this->assertTrue($response->isRedirect());
+	        $this->assertSame(null, $response->getTransactionReference());
+	    }
+
+	    public function testPurchaseError()
+	    {
+	    	$this->setMockHttpResponse('PurchaseError.txt');
+
+	        $response = $this->gateway->purchase($this->options)->send();
+
+	        $this->assertInstanceOf('Omnipay\iPaymu\Message\PurchaseResponse', $response);
+	        $this->assertFalse($response->isSuccessful());
+	        $this->assertFalse($response->isRedirect());
+
+	        $this->assertSame('Total price min Rp 5000 and max Rp 999999999', $response->getMessage());
+	        $this->assertSame(400, $response->getCode());
+	        $this->assertSame(null, $response->getTransactionReference());
+	        // $this->assertSame('10000', $response->getData()); // ?
 	    }
 
 	    public function testCompletePurchase()
