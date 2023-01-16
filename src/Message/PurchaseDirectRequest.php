@@ -57,9 +57,9 @@
 	            $data['phone'] = $this->getPhone();
 	        }
 
-	        if ($this->getReferenceId()) 
+	        if ($this->getTransactionId()) 
 	        {
-	            $data['referenceId'] = $this->getReferenceId();
+	            $data['referenceId'] = $this->getTransactionId();
 	        }
 
 	        if ($this->getPaymentMethod()) 

@@ -25,7 +25,7 @@
 		        'buyerName' => 'putu',
 		        'buyerEmail' => 'putu@mail.com',
 		        'buyerPhone' => '08123456789',
-		        'referenceId' => 'ID1234'
+		        'transactionId' => 'ID1234'
 	        );
 	    }
 

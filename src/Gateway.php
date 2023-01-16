@@ -40,7 +40,7 @@
 	 *      'buyerName' => 'John Doe', // optional
 	 *      'buyerEmail' => 'johndoe@example.com', // optional
 	 *      'buyerPhone' => '123456789', // optional
-	 *      'referenceId' => 'ABC1234', // optional
+	 *      'transactionId' => 'ABC1234', // optional
 	 *      'paymentMethod' => 'cod', // optional
 	 *      'weight' => '1', // optional, COD only
 	 *      'dimension' => '1:1:1', // optional, COD only

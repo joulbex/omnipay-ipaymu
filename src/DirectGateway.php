@@ -38,7 +38,7 @@
 	 *      'name' => 'John Doe',
 	 *      'email' => 'johndoe@example.com',
 	 *      'phone' => '123456789',
-	 *      'referenceId' => 'ABC1234', // optional
+	 *      'transactionId' => 'ABC1234', // optional
 	 *      'weight' => '1', // optional, COD only
 	 *      'dimension' => '1:1:1', // optional, COD only
 	 *      'pickupArea' => '55555', // nullable, COD only

@@ -146,14 +146,14 @@
 	        return $this->setParameter('phone', $phone);
 	    }
 
-	    public function getReferenceId()
+	    public function getTransactionId()
 	    {
-	        return $this->getParameter('referenceId');
+	        return $this->getParameter('transactionId');
 	    }
 
-	    public function setReferenceId($referenceId)
+	    public function setTransactionId($transactionId)
 	    {
-	        return $this->setParameter('referenceId', $referenceId);
+	        return $this->setParameter('transactionId', $transactionId);
 	    }
 
 	    public function getWeight()
