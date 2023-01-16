@@ -39,18 +39,18 @@
 	    /**
 	     * @return string
 	     */
-	    public function getAccountId()
+	    public function getVa()
 	    {
-	        return $this->getParameter('accountId');
+	        return $this->getParameter('va');
 	    }
 
 	    /**
-	     * @param string $accountId
+	     * @param string $va
 	     * @return $this
 	     */
-	    public function setAccountId($accountId)
+	    public function setVa($va)
 	    {
-	        return $this->setParameter('accountId', $accountId);
+	        return $this->setParameter('va', $va);
 	    }
 
 	    /**
@@ -232,9 +232,9 @@
 		{
 			$body = json_encode($data, JSON_UNESCAPED_SLASHES);
 			$requestBody = strtolower(hash('sha256', $body));
-			$accountId = $this->getAccountId();
+			$va = $this->getVa();
 	        $apiKey = $this->getApiKey();
-	        $stringToSign = $method . ':' . $accountId . ':' . $requestBody . ':' . $apiKey;
+	        $stringToSign = $method . ':' . $va . ':' . $requestBody . ':' . $apiKey;
 	        $signature = hash_hmac('sha256', $stringToSign, $apiKey);
 
 	        return $signature;
@@ -252,7 +252,7 @@
 
 	        $headers = array(
 	        	'Content-Type' => 'application/json',
-	            'va' => $this->getAccountId(), // va == accountId
+	            'va' => $this->getVa(),
 	            'signature' => $signature,
 	            'timestamp' => date('YmdHis')
 	        );

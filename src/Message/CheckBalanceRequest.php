@@ -15,7 +15,7 @@
 	    public function getData()
 	    {
 	    	return array(
-	    		'account' => $this->getAccountId()
+	    		'account' => $this->getVa()
 	    	);
 	    }
 	    

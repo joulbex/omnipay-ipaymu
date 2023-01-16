@@ -20,7 +20,7 @@
 	 *   $gateway = Omnipay::create('iPaymu');
 	 * 
 	 * 	 $gateway->initialize([
-	 *	      'accountId' => 'my_account_id', // aka "va"
+	 *	      'va' => 'my_va_number',
 	 *		  'apiKey'    => 'my_api_key',
 	 *		  'testMode'  => true
 	 *	 ]); 
@@ -75,20 +75,20 @@
 	    public function getDefaultParameters()
 	    {
 	        return array(
-	        	'accountId' => '', // aka "va"
+	        	'va' => '',
 	            'apiKey'    => '',
 	            'testMode'  => true
 	        );
 	    }
 
-	    public function getAccountId()
+	    public function getVa()
 	    {
-	    	return $this->getParameter('accountId');
+	    	return $this->getParameter('va');
 	    }
 
-	    public function setAccountId($accountId)
+	    public function setVa($va)
 	    {
-	    	return $this->setParameter('accountId', $accountId);
+	    	return $this->setParameter('va', $va);
 	    }
 
 	    public function getApiKey()

@@ -18,7 +18,7 @@
 	 *   $gateway = Omnipay::create('iPaymu_Direct');
 	 * 
 	 * 	 $gateway->initialize([
-	 *	      'accountId' => 'my_account_id', // aka "va"
+	 *	      'va' => 'my_va_number',
 	 *		  'apiKey'    => 'my_api_key',
 	 *		  'testMode'  => true
 	 *	 ]); 
