@@ -160,6 +160,37 @@ $qrCodeTemplate = $response->getQRTemplateUrl(); // QR code with additional html
 
 - cstore methods (TODO)
 
+## Available methods
+
+# FetchTransaction
+
+```php
+use Omnipay\Omnipay;
+
+// initialize gateway
+$gateway = Omnipay::create('iPaymu');
+
+$gateway->initialize([
+    'va' => 'my_va_number',
+    'apiKey'    => 'my_api_key',
+    'testMode'  => true
+]); 
+
+$response = $gateway->checkTransaction(array(
+    'transactionReference' => '83882'
+))->send();
+
+if ($response->isSuccess()) {
+    // success
+    $data = $response->getData(); 
+} else { 
+    // error
+    var_dump($response->getData());
+    var_dump($response->getMessage());
+    var_dump($response->getCode());
+}
+```
+
 ## Support
 
 If you believe you have found a bug, please report it using the [GitHub issue tracker](https://github.com/joulbex/omnipay-ipaymu/issues),

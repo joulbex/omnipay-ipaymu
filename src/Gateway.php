@@ -136,8 +136,6 @@
 	    }
 
 	    /**
-	     * NOTE: Is the name correct? Does Omnipay have any suggestions about this?
-	     * This part based on https://github.com/pay-now/omnipay-paynow/
 	     * @param  array $parameters
 	     * @return CheckTransactionRequest
 	     */

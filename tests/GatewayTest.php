@@ -74,10 +74,17 @@
 
 	    public function testCheckTransaction()
 	    {
-	        // $request = $this->gateway->checkTransaction(array('amount' => '10.00'));
+	    	$this->setMockHttpResponse('CheckTransactionSuccess.txt');
 
-	        // $this->assertInstanceOf('Omnipay\iPaymu\Message\CheckTransactionRequest', $request);
-	        // $this->assertSame('10.00', $request->getAmount());
+	        $request = $this->gateway->checkTransaction(array('transactionReference' => 4719));
+
+	        $this->assertInstanceOf('Omnipay\iPaymu\Message\CheckTransactionRequest', $request);
+
+	        $response = $request->send();
+
+	        $this->assertInstanceOf('Omnipay\iPaymu\Message\IPaymuResponse', $response);
+	        $this->assertSame(4719, $response->getTransactionReference());
+	        $this->assertSame('success', $response->getMessage());
 	    }
 
 	    public function testCheckBalance()
