@@ -7,6 +7,7 @@
 	use Omnipay\iPaymu\Message\CompletePurchaseRequest;
 	use Omnipay\iPaymu\Message\CheckTransactionRequest;
 	use Omnipay\iPaymu\Message\CheckBalanceRequest;
+	use Omnipay\iPaymu\Message\FetchTransactionHistoryRequest;
 
 	/**
 	 * Gateway for iPaymu off-site payment method (with redirect).
@@ -155,6 +156,18 @@
 	    {
 	        /** @var CheckBalanceRequest $request */
 	        $request = $this->createRequest(CheckBalanceRequest::class, $parameters);
+
+	        return $request;
+	    }
+
+	    /**
+	     * @param  array $parameters
+	     * @return FetchTransactionHistoryRequest
+	     */
+	    public function fetchTransactionHistory(array $parameters = array())
+	    {
+	        /** @var FetchTransactionHistoryRequest $request */
+	        $request = $this->createRequest(FetchTransactionHistoryRequest::class, $parameters);
 
 	        return $request;
 	    }

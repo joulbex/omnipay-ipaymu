@@ -218,6 +218,43 @@ if ($response->isSuccess()) {
 }
 ```
 
+### FetchTransactionHistory
+
+```php
+use Omnipay\Omnipay;
+
+// initialize gateway
+$gateway = Omnipay::create('iPaymu');
+
+$gateway->initialize([
+    'va' => 'my_va_number',
+    'apiKey'    => 'my_api_key',
+    'testMode'  => true
+]); 
+
+$params = array(
+    'status' => 1,
+    'date' => 'created_at',
+    'startdate' => '2022-12-01',
+    'enddate' => '2023-01-31',
+    'page' => '1',
+    'type' => '7',
+    'orderBy' => 'created_at',
+    'order' => 'ASC'
+);
+$response = $gateway->fetchTransactionHistory($params)->send();
+
+if ($response->isSuccess()) {
+    // success
+    $data = $response->getData(); 
+} else { 
+    // error
+    var_dump($response->getData());
+    var_dump($response->getMessage());
+    var_dump($response->getCode());
+}
+```
+
 ## Support
 
 If you believe you have found a bug, please report it using the [GitHub issue tracker](https://github.com/joulbex/omnipay-ipaymu/issues),

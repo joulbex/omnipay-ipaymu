@@ -99,4 +99,31 @@
 	        $this->assertSame('51125', $data['Data']['MerchantBalance']);
 	        $this->assertSame('success', $response->getMessage());
 	    }
+
+	    public function testFetchTransactionHistory()
+	    {
+	    	$this->setMockHttpResponse('FetchTransactionHistorySuccess.txt');
+
+	    	$params = array(
+		        'status' => 1,
+		        'date' => 'created_at',
+		        'startdate' => '2022-12-01',
+		        'enddate' => '2023-01-31',
+		        'page' => '1',
+		        'type' => '7',
+		        'orderBy' => 'created_at',
+		        'order' => 'ASC'
+		    );
+
+	        $request = $this->gateway->fetchTransactionHistory($params);
+	        $this->assertInstanceOf('Omnipay\iPaymu\Message\FetchTransactionHistoryRequest', $request);
+
+	        $response = $request->send();
+	        $data = $response->getData();
+
+	        $this->assertInstanceOf('Omnipay\iPaymu\Message\IPaymuResponse', $response);
+	        $this->assertSame(2, $data['Data']['Transaction'][0]['TransactionId']);
+	        $this->assertSame('1399.02', $data['Data']['Transaction'][0]['Fee']);
+	        $this->assertSame('success', $response->getMessage());
+	    }
 	}
