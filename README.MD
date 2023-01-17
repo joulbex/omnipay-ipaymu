@@ -73,7 +73,7 @@ $params = [
     // 'buyerName' => 'John Doe', // optional
     // 'buyerEmail' => 'johndoe@example.com', // optional
     // 'buyerPhone' => '123456789', // optional
-    // 'referenceId' => 'ABC1234', // optional
+    // 'transactionId' => 'ABC1234', // optional
     // 'paymentMethod' => 'cod', // optional
     // 'weight' => '1', // optional, COD only
     // 'dimension' => '1:1:1', // optional, COD only
@@ -121,7 +121,7 @@ $params = [
     'name' => 'John Doe',
     'email' => 'johndoe@example.com',
     'phone' => '123456789',
-    // 'referenceId' => 'ABC1234', // optional
+    // 'transactionId' => 'ABC1234', // optional
     // 'weight' => '1', // optional, COD only
     // 'dimension' => '1:1:1', // optional, COD only
     // 'pickupArea' => '55555', // nullable, COD only
@@ -162,7 +162,7 @@ $qrCodeTemplate = $response->getQRTemplateUrl(); // QR code with additional html
 
 ## Available methods
 
-# FetchTransaction
+### CheckTransaction
 
 ```php
 use Omnipay\Omnipay;
@@ -191,36 +191,7 @@ if ($response->isSuccess()) {
 }
 ```
 
-# CheckTransaction
-
-```php
-use Omnipay\Omnipay;
-
-// initialize gateway
-$gateway = Omnipay::create('iPaymu');
-
-$gateway->initialize([
-    'va' => 'my_va_number',
-    'apiKey'    => 'my_api_key',
-    'testMode'  => true
-]); 
-
-$response = $gateway->checkTransaction(array(
-    'transactionReference' => '83882'
-))->send();
-
-if ($response->isSuccess()) {
-    // success
-    $data = $response->getData(); 
-} else { 
-    // error
-    var_dump($response->getData());
-    var_dump($response->getMessage());
-    var_dump($response->getCode());
-}
-```
-
-# CheckBalance
+### CheckBalance
 
 ```php
 use Omnipay\Omnipay;
