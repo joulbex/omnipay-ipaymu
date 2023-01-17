@@ -1,4 +1,4 @@
-# Omnipay: iPaymu - WORK IN PROGRESS!
+# Omnipay: iPaymu
 
 **iPaymu driver for the Omnipay PHP payment processing library**
 

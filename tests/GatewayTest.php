@@ -66,10 +66,9 @@
 
 	    public function testCompletePurchase()
 	    {
-	        // $request = $this->gateway->completePurchase(array('amount' => '10.00'));
+	        $request = $this->gateway->completePurchase();
 
-	        // $this->assertInstanceOf('Omnipay\iPaymu\Message\PurchaseCompleteRequest', $request);
-	        // $this->assertSame('10.00', $request->getAmount());
+	        $this->assertInstanceOf('Omnipay\iPaymu\Message\CompletePurchaseRequest', $request);
 	    }
 
 	    public function testCheckTransaction()
