@@ -224,8 +224,8 @@
 
 		/**
 		 * Generates request signature.
-		 * @see: https://github.com/ipaymu/ipaymu-php-api/blob/master/iPaymu/Traits/CurlTrait.php
-		 * @see: https://ipaymu-storage.s3.amazonaws.com/fdoc/api/payment-api-v2.pdf
+		 * @see https://github.com/ipaymu/ipaymu-php-api/blob/master/iPaymu/Traits/CurlTrait.php
+		 * @see https://ipaymu-storage.s3.amazonaws.com/fdoc/api/payment-api-v2.pdf
 		 * @return string
  		 */
 		protected function createSignature($method, $data)
