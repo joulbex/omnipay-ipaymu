@@ -9,6 +9,9 @@ processing library for PHP. This package implements iPaymu support for Omnipay.
 
 ## Installation
 
+*For the legacy 2.x version (Omnipay 2.5, PHP 5.4+),
+[please see the 2.x branch](https://github.com/joulbex/omnipay-ipaymu/tree/2.x)*
+
 Omnipay is installed via [Composer](http://getcomposer.org/). To install, simply add it
 to your `composer.json` file:
 
