@@ -234,7 +234,7 @@
 			$requestBody = strtolower(hash('sha256', $body));
 			$va = $this->getVa();
 	        $apiKey = $this->getApiKey();
-	        $stringToSign = $method . ':' . $va . ':' . $requestBody . ':' . $apiKey;
+	        $stringToSign = strtoupper($method) . ':' . $va . ':' . $requestBody . ':' . $apiKey;
 	        $signature = hash_hmac('sha256', $stringToSign, $apiKey);
 
 	        return $signature;

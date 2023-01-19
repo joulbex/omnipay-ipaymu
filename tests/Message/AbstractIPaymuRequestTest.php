@@ -3,23 +3,74 @@
 	namespace Omnipay\iPaymu;
 
 	use Omnipay\Tests\TestCase;
+	use Mockery;
 
 	class AbstractIPaymuRequestTest extends TestCase
 	{
-    	protected $stub;
+    	protected $request;
+    	protected $options;
 
     	public function setUp()
 	    {
-	        // $this->request = new PurchaseRequest($this->getHttpClient(), $this->getHttpRequest());
+	        $this->request = Mockery::mock('Omnipay\iPaymu\Message\AbstractIPaymuRequest')->makePartial();
 
-	        $this->stub = $this->getMockForAbstractClass(
-			    'Omnipay\iPaymu\Message\AbstractIPaymuRequest',
-			    array($this->getHttpClient(), $this->getHttpRequest())
-			);
+			$this->options = array(
+				'va' => 'test_va',
+				'apiKey' => 'test_api_key',
+				'testMode' => true,
+	        	'product' => 'Baju',
+		        'qty' => '1',
+		        'price' => '10000',
+		        'description' => 'Baju1',
+		        'notifyUrl' => 'https://ipaymu.com/notify',
+		        'returnUrl' => 'https://ipaymu.com/return',
+		        'cancelUrl' => 'https://ipaymu.com/cancel',
+		        'buyerName' => 'putu',
+		        'buyerEmail' => 'putu@mail.com',
+		        'buyerPhone' => '08123456789',
+		        'transactionId' => 'ID1234'
+	        );
 	    }
 
 	    public function testGetSignature()
 	    {
-	    	// TODO
+	    	$this->request->initialize($this->options);
+	    	$signature = $this->request->createSignature('POST', $this->options);
+
+	    	$this->assertSame('c0ab16c876cf50222a60a6957b30033197f5b2a12bfef5658963e859ca3378af', $signature);
+	    }
+
+	    public function testGetBaseEndpoint()
+	    {
+	    	$this->request->initialize($this->options);
+	    	$endpoint = $this->request->getBaseEndpoint('POST', $this->options);
+
+	    	$this->assertSame('https://sandbox.ipaymu.com/api/v2', $endpoint);
+	    }
+
+	    public function testApiKey()
+	    {
+	    	$this->request->initialize($this->options);
+
+	    	$this->request->setApiKey('different_api_key');
+        	$this->assertSame('different_api_key', $this->request->getApiKey());
+	    }
+
+	    public function testVa()
+	    {
+	    	$this->request->initialize($this->options);
+
+	    	$this->request->setVa('different_va');
+        	$this->assertSame('different_va', $this->request->getVa());
+	    }
+
+	    public function testTransactionId()
+	    {
+	    	$this->request->initialize($this->options);
+
+	    	$this->assertSame('ID1234', $this->request->getTransactionId());
+
+	    	$this->request->setTransactionId('different_transaction_id');
+        	$this->assertSame('different_transaction_id', $this->request->getTransactionId());
 	    }
 	}
