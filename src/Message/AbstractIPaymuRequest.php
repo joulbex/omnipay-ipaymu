@@ -257,29 +257,13 @@
 	            'timestamp' => date('YmdHis')
 	        );
 
-	        $this->httpClient->getEventDispatcher()->addListener('request.error', function (Event $event) {
-	            /**
-	             * @var \Guzzle\Http\Message\Response $response
-	             */
-	            $response = $event['response'];
-
-	            if ($response->isError()) {
-	                $event->stopPropagation();
-	            }
-	        });
-
-	        $httpRequest = $this->httpClient->createRequest(
+	        $response = $this->httpClient->request(
 	            $method,
 	            $this->getBaseEndpoint() . $endpoint,
 	            $headers,
-	            $data
+	            ($data === null || $data === []) ? null : json_encode($data)
 	        );
 
-	        // NOTE: Guzzle 3 sets Content-Type to application/x-www-form-urlencoded even if different is given in $headers
-	        // https://stackoverflow.com/questions/61933825/guzzle-3-x-how-to-set-content-type-application-json
-	        // https://guzzle3.readthedocs.io/http-client/request.html
-	        $httpRequest->setBody(json_encode($data), 'application/json');
-
-	        return $httpRequest->send();
+	        return json_decode($response->getBody(), true);
 	    }
 	}

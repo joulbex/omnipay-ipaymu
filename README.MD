@@ -18,14 +18,15 @@ to your `composer.json` file:
 ```json
 {
     "require": {
-        "joulbex/omnipay-ipaymu": "~2.0"
+        "league/omnipay": "~3.0",
+        "joulbex/omnipay-ipaymu": "~3.0"
     }
 }
 ```
 
 or run:
 
-    $ composer require "joulbex/omnipay-ipaymu: ~2.0"
+    $ composer require "league/omnipay: ~3.0" "joulbex/omnipay-ipaymu: ~3.0"
 
 ## Basic Usage
 

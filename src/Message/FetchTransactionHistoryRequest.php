@@ -149,6 +149,6 @@
 	    {
 	    	$httpResponse = $this->sendRequest('POST', '/history', $data);
 
-        	return $this->response = new IPaymuResponse($this, $httpResponse->json());
+        	return $this->response = new IPaymuResponse($this, $httpResponse);
 	    }
 	}

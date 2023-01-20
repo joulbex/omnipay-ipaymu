@@ -10,7 +10,7 @@
     	protected $request;
     	protected $options;
 
-    	public function setUp()
+    	public function setUp(): void
 	    {
 	        $this->request = new CheckTransactionRequest($this->getHttpClient(), $this->getHttpRequest());
 

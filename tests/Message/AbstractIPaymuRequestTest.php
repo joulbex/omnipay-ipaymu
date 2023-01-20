@@ -10,7 +10,7 @@
     	protected $request;
     	protected $options;
 
-    	public function setUp()
+    	public function setUp(): void
 	    {
 	        $this->request = Mockery::mock('Omnipay\iPaymu\Message\AbstractIPaymuRequest')->makePartial();
 

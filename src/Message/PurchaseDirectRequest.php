@@ -109,6 +109,6 @@
 	    {
 	    	$httpResponse = $this->sendRequest('POST', '/payment/direct', $data);
 
-        	return $this->response = new PurchaseDirectResponse($this, $httpResponse->json());
+        	return $this->response = new PurchaseDirectResponse($this, $httpResponse);
 	    }
 	}

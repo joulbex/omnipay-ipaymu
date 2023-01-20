@@ -94,6 +94,6 @@
 	    {
 	    	$httpResponse = $this->sendRequest('POST', '/payment', $data);
 
-        	return $this->response = new PurchaseResponse($this, $httpResponse->json());
+        	return $this->response = new PurchaseResponse($this, $httpResponse);
 	    }
 	}
