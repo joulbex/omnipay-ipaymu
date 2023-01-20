@@ -13,7 +13,7 @@
 	    {
 	        parent::setUp();
 
-	        $this->options = array(
+	        $this->options = [
 	        	'product' => 'Test product',
 		        'qty' => '1',
 		        'price' => '15000.00',
@@ -24,12 +24,12 @@
 		        'name' => 'John Doe',
 		        'email' => 'johndoe@example.com', 
 		        'phone' => '123456789'
-	        );
+	        ];
 
 	        $this->gateway = new DirectGateway($this->getHttpClient(), $this->getHttpRequest());
 	    }
 
-	    public function testPurchaseSuccess()
+	    public function testPurchaseSuccess(): void
 	    {
 	    	$this->setMockHttpResponse('PurchaseDirectSuccess.txt');
 
@@ -40,7 +40,7 @@
 	        $this->assertSame(3084673, $response->getTransactionReference());
 	    }
 
-	    public function testPurchaseError()
+	    public function testPurchaseError(): void
 	    {
 	    	$this->setMockHttpResponse('PurchaseDirectError.txt');
 

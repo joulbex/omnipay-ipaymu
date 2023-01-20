@@ -11,7 +11,7 @@
 	        return $this->getParameter('status');
 	    }
 
-	    public function setStatus($status)
+	    public function setStatus(int $status)
 	    {
 	        return $this->setParameter('status', $status);
 	    }
@@ -31,7 +31,7 @@
 	        return $this->getParameter('startDate');
 	    }
 
-	    public function setStartDate($startDate)
+	    public function setStartDate(string $startDate)
 	    {
 	        return $this->setParameter('startDate', $startDate);
 	    }
@@ -41,7 +41,7 @@
 	        return $this->getParameter('endDate');
 	    }
 
-	    public function setEndDate($endDate)
+	    public function setEndDate(string $endDate)
 	    {
 	        return $this->setParameter('endDate', $endDate);
 	    }
@@ -51,7 +51,7 @@
 	        return $this->getParameter('page');
 	    }
 
-	    public function setPage($page)
+	    public function setPage(int $page)
 	    {
 	        return $this->setParameter('page', $page);
 	    }
@@ -61,7 +61,7 @@
 	        return $this->getParameter('type');
 	    }
 
-	    public function setType($type)
+	    public function setType(int $type)
 	    {
 	        return $this->setParameter('type', $type);
 	    }
@@ -71,7 +71,7 @@
 	        return $this->getParameter('orderBy');
 	    }
 
-	    public function setOrderBy($orderBy)
+	    public function setOrderBy(string $orderBy)
 	    {
 	        return $this->setParameter('orderBy', $orderBy);
 	    }
@@ -81,7 +81,7 @@
 	        return $this->getParameter('order');
 	    }
 
-	    public function setOrder($order)
+	    public function setOrder(string $order)
 	    {
 	        return $this->setParameter('order', $order);
 	    }
@@ -94,7 +94,7 @@
 	     */
 	    public function getData()
 	    {
-	    	$data = array();
+	    	$data = [];
 
 	    	if ($this->getStatus()) 
 	        {

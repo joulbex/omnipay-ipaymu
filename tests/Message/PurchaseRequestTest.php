@@ -14,7 +14,7 @@
 	    {
 	        $this->request = new PurchaseRequest($this->getHttpClient(), $this->getHttpRequest());
 
-	        $this->options = array(
+	        $this->options = [
 	        	'product' => 'Baju',
 		        'qty' => '1',
 		        'price' => '10000',
@@ -26,18 +26,18 @@
 		        'buyerEmail' => 'putu@mail.com',
 		        'buyerPhone' => '08123456789',
 		        'transactionId' => 'ID1234'
-	        );
+	        ];
 	    }
 
-	    public function testGetData()
+	    public function testGetData(): void
 	    {
 	        $this->request->initialize($this->options);
 
 	        $data = $this->request->getData();
 
 	        $this->assertSame('Baju', $data['product'][0]);
-	        $this->assertSame('1', $data['qty'][0]);
-	        $this->assertSame('10000', $data['price'][0]);
+	        $this->assertSame(1, $data['qty'][0]);
+	        $this->assertSame(10000.00, $data['price'][0]);
 	        $this->assertSame('Baju1', $data['description'][0]);
 	        $this->assertSame('https://ipaymu.com/notify', $data['notifyUrl']);
 	        $this->assertSame('https://ipaymu.com/return', $data['returnUrl']);
@@ -49,7 +49,7 @@
 	        $this->assertCount(11, $data);
 	    }
 
-	    public function testGetDataWithCOD()
+	    public function testGetDataWithCOD(): void
 	    {
 	    	$this->options = array_merge($this->options, array(
 	    		'paymentMethod' => 'cod',
@@ -64,8 +64,8 @@
 	        $data = $this->request->getData();
 
 	        $this->assertSame('Baju', $data['product'][0]);
-	        $this->assertSame('1', $data['qty'][0]);
-	        $this->assertSame('10000', $data['price'][0]);
+	        $this->assertSame(1, $data['qty'][0]);
+	        $this->assertSame(10000.00, $data['price'][0]);
 	        $this->assertSame('Baju1', $data['description'][0]);
 	        $this->assertSame('https://ipaymu.com/notify', $data['notifyUrl']);
 	        $this->assertSame('https://ipaymu.com/return', $data['returnUrl']);
@@ -76,7 +76,7 @@
 	        $this->assertSame('ID1234', $data['referenceId']);
 
 	        $this->assertSame('cod', $data['paymentMethod']);
-	        $this->assertSame('1', $data['weight'][0]);
+	        $this->assertSame(1.0, $data['weight'][0]);
 	        $this->assertSame('1:1:1', $data['dimension'][0]);
 	        $this->assertSame('80117', $data['pickupArea']);
 	        $this->assertSame('Jakarta', $data['pickupAddress']);

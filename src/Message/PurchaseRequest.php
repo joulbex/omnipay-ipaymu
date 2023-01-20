@@ -21,13 +21,13 @@
 	        	$this->validate('weight', 'dimension', 'pickupArea', 'pickupAddress');
 	        }
 
-	        $data = array();
+	        $data = [];
 
-	        $data['price'] = array($this->getPrice());
-	        $data['qty'] = array($this->getQty());
+	        $data['price'] = [$this->getPrice()];
+	        $data['qty'] = [$this->getQty()];
 
-	        $data['product'] = array($this->getProduct());
-	        $data['description'] = array($this->getDescription());
+	        $data['product'] = [$this->getProduct()];
+	        $data['description'] = [$this->getDescription()];
 	        $data['returnUrl'] = $this->getReturnUrl();
 	        $data['cancelUrl'] = $this->getCancelUrl();
 	        $data['notifyUrl'] = $this->getNotifyUrl();
@@ -62,12 +62,12 @@
 	        {
 	        	if ($this->getWeight()) 
 		        {
-		            $data['weight'] = array($this->getWeight());
+		            $data['weight'] = [$this->getWeight()];
 		        }
 
 		        if ($this->getDimension()) 
 		        {
-		            $data['dimension'] = array($this->getDimension());
+		            $data['dimension'] = [$this->getDimension()];
 		        }
 
 		        if ($this->getPickupArea()) 

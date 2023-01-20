@@ -23,15 +23,15 @@
 		/**
 	     * @return string
 	     */
-	    public function getApiKey()
+	    public function getApiKey(): string
 	    {
 	        return $this->getParameter('apiKey');
 	    }
 
 	    /**
-	     * @return string
+	     * @return $this
 	     */
-	    public function setApiKey($apiKey)
+	    public function setApiKey(string $apiKey): self
 	    {
 	        return $this->setParameter('apiKey', $apiKey);
 	    }
@@ -39,7 +39,7 @@
 	    /**
 	     * @return string
 	     */
-	    public function getVa()
+	    public function getVa(): string
 	    {
 	        return $this->getParameter('va');
 	    }
@@ -48,7 +48,7 @@
 	     * @param string $va
 	     * @return $this
 	     */
-	    public function setVa($va)
+	    public function setVa(string $va): self
 	    {
 	        return $this->setParameter('va', $va);
 	    }
@@ -56,92 +56,92 @@
 	    /**
 	     * @return string
 	     */
-	    public function getProduct()
+	    public function getProduct(): string
 	    {
 	        return $this->getParameter('product');
 	    }
 
-	    public function setProduct($product)
+	    public function setProduct(string $product): self
 	    {
 	        return $this->setParameter('product', $product);
 	    }
 
-	    public function getPrice()
+	    public function getPrice(): float
 	    {
-	        return $this->getParameter('price');
+	        return (float)$this->getParameter('price');
 	    }
 
-	    public function setPrice($price)
+	    public function setPrice(float $price): self
 	    {
 	        return $this->setParameter('price', $price);
 	    }
 
-	    public function getQty()
+	    public function getQty(): int
 	    {
 	        return $this->getParameter('qty');
 	    }
 
-	    public function setQty($qty)
+	    public function setQty(int $qty): self
 	    {
 	        return $this->setParameter('qty', $qty);
 	    }
 
-	    public function getBuyerName()
+	    public function getBuyerName(): string
 	    {
 	        return $this->getParameter('buyerName');
 	    }
 
-	    public function setBuyerName($buyerName)
+	    public function setBuyerName(string $buyerName): self
 	    {
 	        return $this->setParameter('buyerName', $buyerName);
 	    }
 
-	    public function getBuyerEmail()
+	    public function getBuyerEmail(): string
 	    {
 	        return $this->getParameter('buyerEmail');
 	    }
 
-	    public function setBuyerEmail($buyerEmail)
+	    public function setBuyerEmail(string $buyerEmail): self
 	    {
 	        return $this->setParameter('buyerEmail', $buyerEmail);
 	    }
 
-	    public function getBuyerPhone()
+	    public function getBuyerPhone(): string
 	    {
 	        return $this->getParameter('buyerPhone');
 	    }
 
-	    public function setBuyerPhone($buyerPhone)
+	    public function setBuyerPhone(string $buyerPhone): self
 	    {
 	        return $this->setParameter('buyerPhone', $buyerPhone);
 	    }
 
-	    public function getName()
+	    public function getName(): string
 	    {
 	        return $this->getParameter('name');
 	    }
 
-	    public function setName($name)
+	    public function setName(string $name): self
 	    {
 	        return $this->setParameter('name', $name);
 	    }
 
-	    public function getEmail()
+	    public function getEmail(): string
 	    {
 	        return $this->getParameter('email');
 	    }
 
-	    public function setEmail($email)
+	    public function setEmail(string $email): self
 	    {
 	        return $this->setParameter('email', $email);
 	    }
 
-	 	public function getPhone()
+	 	public function getPhone(): string
 	    {
 	        return $this->getParameter('phone');
 	    }
 
-	    public function setPhone($phone)
+	    public function setPhone(string $phone): self
 	    {
 	        return $this->setParameter('phone', $phone);
 	    }
@@ -156,57 +156,57 @@
 	        return $this->setParameter('transactionId', $transactionId);
 	    }
 
-	    public function getWeight()
+	    public function getWeight(): float
 	    {
-	        return $this->getParameter('weight');
+	        return (float)$this->getParameter('weight');
 	    }
 
-	    public function setWeight($weight)
+	    public function setWeight($weight): self
 	    {
 	        return $this->setParameter('weight', $weight);
 	    }
 
-	    public function getDimension()
+	    public function getDimension(): string
 	    {
 	        return $this->getParameter('dimension');
 	    }
 
-	    public function setDimension($dimension)
+	    public function setDimension(string $dimension): self
 	    {
 	        return $this->setParameter('dimension', $dimension);
 	    }
 
-	    public function getPickupArea()
+	    public function getPickupArea(): string
 	    {
 	        return $this->getParameter('pickupArea');
 	    }
 
-	    public function setPickupArea($pickupArea)
+	    public function setPickupArea(string $pickupArea): self
 	    {
 	        return $this->setParameter('pickupArea', $pickupArea);
 	    }
 
-	    public function getPickupAddress()
+	    public function getPickupAddress(): string
 	    {
 	        return $this->getParameter('pickupAddress');
 	    }
 
-	    public function setPickupAddress($pickupAddress)
+	    public function setPickupAddress(string $pickupAddress): self
 	    {
 	        return $this->setParameter('pickupAddress', $pickupAddress);
 	    }
 
-	    public function getPaymentChannel()
+	    public function getPaymentChannel(): string
 	    {
 	        return $this->getParameter('paymentChannel');
 	    }
 
-	    public function setPaymentChannel($paymentChannel)
+	    public function setPaymentChannel(string $paymentChannel): self
 	    {
 	        return $this->setParameter('paymentChannel', $paymentChannel);
 	    }
 
-	    public function isCOD()
+	    public function isCOD(): bool
 	    {
 	        if ($this->getPaymentMethod()){
 	        	return $this->getPaymentMethod() == 'cod';
@@ -215,7 +215,7 @@
 	        return false;
 	    }
 
-	    public function getBaseEndpoint()
+	    public function getBaseEndpoint(): string
 	    {
 	    	$base = $this->getTestMode() ? $this->baseSandboxEndpoint : $this->baseLiveEndpoint;
 
@@ -228,7 +228,7 @@
 		 * @see https://ipaymu-storage.s3.amazonaws.com/fdoc/api/payment-api-v2.pdf
 		 * @return string
  		 */
-		protected function createSignature($method, $data)
+		protected function createSignature(string $method, array $data): string
 		{
 			$body = json_encode($data, JSON_UNESCAPED_SLASHES);
 			$requestBody = strtolower(hash('sha256', $body));
@@ -246,16 +246,16 @@
 	     * @param array $data
 	     * @return array
 	     */
-	    protected function sendRequest($method, $endpoint, array $data = null)
+	    protected function sendRequest(string $method, string $endpoint, array $data = null)
 	    {
 	    	$signature = $this->createSignature($method, $data);
 
-	        $headers = array(
+	        $headers = [
 	        	'Content-Type' => 'application/json',
 	            'va' => $this->getVa(),
 	            'signature' => $signature,
 	            'timestamp' => date('YmdHis')
-	        );
+	        ];
 
 	        $response = $this->httpClient->request(
 	            $method,

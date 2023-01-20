@@ -13,7 +13,7 @@
 	    {
 	        parent::setUp();
 
-	        $this->options = array(
+	        $this->options = [
 	        	'product' => 'Baju',
 		        'qty' => '1',
 		        'price' => '10000',
@@ -30,12 +30,12 @@
 		        'dimension' => '1:1:1',
 		        'pickupArea' => '80117',
 		        'pickupAddress' => 'Jakarta'
-	        );
+	        ];
 
 	        $this->gateway = new Gateway($this->getHttpClient(), $this->getHttpRequest());
 	    }
 
-	    public function testPurchaseSuccess()
+	    public function testPurchaseSuccess(): void
 	    {
 	    	$this->setMockHttpResponse('PurchaseSuccess.txt');
 
@@ -48,7 +48,7 @@
 	        $this->assertSame(null, $response->getTransactionReference());
 	    }
 
-	    public function testPurchaseError()
+	    public function testPurchaseError(): void
 	    {
 	    	$this->setMockHttpResponse('PurchaseError.txt');
 
@@ -64,18 +64,18 @@
 	        // $this->assertSame('10000', $response->getData()); // ?
 	    }
 
-	    public function testCompletePurchase()
+	    public function testCompletePurchase(): void
 	    {
 	        $request = $this->gateway->completePurchase();
 
 	        $this->assertInstanceOf('Omnipay\iPaymu\Message\CompletePurchaseRequest', $request);
 	    }
 
-	    public function testCheckTransaction()
+	    public function testCheckTransaction(): void
 	    {
 	    	$this->setMockHttpResponse('CheckTransactionSuccess.txt');
 
-	        $request = $this->gateway->checkTransaction(array('transactionReference' => 4719));
+	        $request = $this->gateway->checkTransaction(['transactionReference' => 4719]);
 	        $this->assertInstanceOf('Omnipay\iPaymu\Message\CheckTransactionRequest', $request);
 
 	        $response = $request->send();
@@ -85,7 +85,7 @@
 	        $this->assertSame('success', $response->getMessage());
 	    }
 
-	    public function testCheckBalance()
+	    public function testCheckBalance(): void
 	    {
 	    	$this->setMockHttpResponse('CheckBalanceSuccess.txt');
 
@@ -100,11 +100,11 @@
 	        $this->assertSame('success', $response->getMessage());
 	    }
 
-	    public function testFetchTransactionHistory()
+	    public function testFetchTransactionHistory(): void
 	    {
 	    	$this->setMockHttpResponse('FetchTransactionHistorySuccess.txt');
 
-	    	$params = array(
+	    	$params = [
 		        'status' => 1,
 		        'date' => 'created_at',
 		        'startdate' => '2022-12-01',
@@ -113,7 +113,7 @@
 		        'type' => '7',
 		        'orderBy' => 'created_at',
 		        'order' => 'ASC'
-		    );
+		    ];
 
 	        $request = $this->gateway->fetchTransactionHistory($params);
 	        $this->assertInstanceOf('Omnipay\iPaymu\Message\FetchTransactionHistoryRequest', $request);

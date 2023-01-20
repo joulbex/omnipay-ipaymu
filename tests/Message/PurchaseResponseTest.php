@@ -6,7 +6,7 @@
 
 	class PurchaseResponseTest extends TestCase
 	{
-		public function testPurchaseResponseSuccess()
+		public function testPurchaseResponseSuccess(): void
 	    {
 	        $httpResponse = $this->getMockHttpResponse('PurchaseSuccess.txt');
 	        $data = json_decode((string)$httpResponse->getBody(), true);
@@ -17,7 +17,7 @@
 	        // $this->assertSame('PAY-3TJ47806DA028052TKTQGVYI', $response->getTransactionReference());
 	        $this->assertSame('success', $response->getMessage());
 
-	        $this->assertSame(array(), $response->getRedirectData());
+	        $this->assertSame([], $response->getRedirectData());
 	        $this->assertSame('GET', $response->getRedirectMethod());
 	        $this->assertSame('https://sandbox.ipaymu.com/payment/91538218-5158-459B-8716-DD97FFE3EDAB', $response->getRedirectUrl());
 	    }

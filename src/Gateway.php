@@ -75,11 +75,11 @@
 
 	    public function getDefaultParameters()
 	    {
-	        return array(
+	        return [
 	        	'va' => '',
 	            'apiKey'    => '',
 	            'testMode'  => true
-	        );
+	        ];
 	    }
 
 	    public function getVa()
@@ -87,7 +87,7 @@
 	    	return $this->getParameter('va');
 	    }
 
-	    public function setVa($va)
+	    public function setVa(string $va)
 	    {
 	    	return $this->setParameter('va', $va);
 	    }
@@ -97,7 +97,7 @@
 	    	return $this->getParameter('apiKey');
 	    }
 
-	    public function setApiKey($apiKey)
+	    public function setApiKey(string $apiKey)
 	    {
 	    	return $this->setParameter('apiKey', $apiKey);
 	    }
@@ -107,7 +107,7 @@
          * @return $this|Gateway
          * @throws
          */
-        public function initialize(array $parameters = array())
+        public function initialize(array $parameters = [])
         {
             parent::initialize($parameters);
 
@@ -117,7 +117,7 @@
         /**
 	     * The purchase transaction.
 	     */
-	    public function purchase(array $parameters = array())
+	    public function purchase(array $parameters = [])
 	    {
 	        $request = $this->createRequest(PurchaseRequest::class, $parameters);
 
@@ -128,7 +128,7 @@
 	     * @param  array $parameters
 	     * @return CompletePurchaseRequest
 	     */
-	    public function completePurchase(array $parameters = array())
+	    public function completePurchase(array $parameters = [])
 	    {
 	        /** @var CompletePurchaseRequest $request */
 	        $request = $this->createRequest(CompletePurchaseRequest::class, $parameters);
@@ -140,7 +140,7 @@
 	     * @param  array $parameters
 	     * @return CheckTransactionRequest
 	     */
-	    public function checkTransaction(array $parameters = array())
+	    public function checkTransaction(array $parameters = [])
 	    {
 	        /** @var CheckTransactionRequest $request */
 	        $request = $this->createRequest(CheckTransactionRequest::class, $parameters);
@@ -152,7 +152,7 @@
 	     * @param  array $parameters
 	     * @return CheckBalanceRequest
 	     */
-	    public function checkBalance(array $parameters = array())
+	    public function checkBalance(array $parameters = [])
 	    {
 	        /** @var CheckBalanceRequest $request */
 	        $request = $this->createRequest(CheckBalanceRequest::class, $parameters);
@@ -164,7 +164,7 @@
 	     * @param  array $parameters
 	     * @return FetchTransactionHistoryRequest
 	     */
-	    public function fetchTransactionHistory(array $parameters = array())
+	    public function fetchTransactionHistory(array $parameters = [])
 	    {
 	        /** @var FetchTransactionHistoryRequest $request */
 	        $request = $this->createRequest(FetchTransactionHistoryRequest::class, $parameters);

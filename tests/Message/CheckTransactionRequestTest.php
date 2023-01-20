@@ -14,12 +14,12 @@
 	    {
 	        $this->request = new CheckTransactionRequest($this->getHttpClient(), $this->getHttpRequest());
 
-	        $this->options = array(
+	        $this->options = [
 		        'transactionReference' => '9974623'
-	        );
+	        ];
 	    }
 
-	    public function testGetData()
+	    public function testGetData(): void
 	    {
 	        $this->request->initialize($this->options);
 

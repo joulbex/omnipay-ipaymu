@@ -72,7 +72,7 @@
         /**
 	     * The purchase transaction
 	     */
-	    public function purchase(array $parameters = array())
+	    public function purchase(array $parameters = [])
 	    {
 	        $request = $this->createRequest(PurchaseDirectRequest::class, $parameters);
 
@@ -83,7 +83,7 @@
 	     * @param  array $parameters
 	     * @return CompletePurchaseRequest
 	     */
-	    public function completePurchase(array $parameters = array())
+	    public function completePurchase(array $parameters = [])
 	    {
 	        /** @var CompletePurchaseRequest $request */
 	        $request = $this->createRequest(CompletePurchaseRequest::class, $parameters);

@@ -14,7 +14,7 @@
 	    {
 	        $this->request = new PurchaseDirectRequest($this->getHttpClient(), $this->getHttpRequest());
 
-	        $this->options = array(
+	        $this->options = [
 	        	'product' => 'Test product',
 		        'qty' => '1',
 		        'price' => '15000.00',
@@ -26,18 +26,18 @@
 		        'email' => 'johndoe@example.com', 
 		        'phone' => '123456789', 
 		        'transactionId' => 'ABC1234'
-	        );
+	        ];
 	    }
 
-	    public function testGetData()
+	    public function testGetData(): void
 	    {
 	        $this->request->initialize($this->options);
 
 	        $data = $this->request->getData();
 
 	        $this->assertSame('Test product', $data['product'][0]);
-	        $this->assertSame('1', $data['qty'][0]);
-	        $this->assertSame('15000.00', $data['price'][0]);
+	        $this->assertSame(1, $data['qty'][0]);
+	        $this->assertSame(15000.00, $data['price'][0]);
 	        $this->assertSame('Test description', $data['description'][0]);
 	        $this->assertSame('http://localhost:8000/notify.php', $data['notifyUrl']);
 	        $this->assertSame('cstore', $data['paymentMethod']);

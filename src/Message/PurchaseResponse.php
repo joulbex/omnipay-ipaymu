@@ -6,10 +6,6 @@
 
 	class PurchaseResponse extends IPaymuResponse implements RedirectResponseInterface
 	{
-		/**
-	     *
-	     * {@inheritdoc}
-	     */
 	    public function isSuccessful()
 	    {
 	        return isset($this->data['Status']) && $this->data['Status'] == 200;
@@ -49,6 +45,6 @@
 	     */
 	    public function getRedirectData()
 	    {
-	    	return array();
+	    	return [];
 	    }
 	}

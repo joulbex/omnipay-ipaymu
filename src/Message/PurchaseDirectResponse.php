@@ -4,10 +4,6 @@
 
 	class PurchaseDirectResponse extends IPaymuResponse
 	{
-		/**
-	     *
-	     * {@inheritdoc}
-	     */
 	    public function isSuccessful()
 	    {
 	        return isset($this->data['Status']) && $this->data['Status'] == 200;

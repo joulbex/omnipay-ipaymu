@@ -14,13 +14,13 @@
 	    {
 	        $this->request = new CheckBalanceRequest($this->getHttpClient(), $this->getHttpRequest());
 
-	        $this->options = array(
+	        $this->options = [
 	        	'va' => 'test_va',
 		        'apiKey' => 'test_api_key'
-	        );
+	        ];
 	    }
 
-	    public function testGetData()
+	    public function testGetData(): void
 	    {
 	        $this->request->initialize($this->options);
 

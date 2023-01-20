@@ -14,9 +14,9 @@
 	     */
 	    public function getData()
 	    {
-	    	return array(
+	    	return [
 	    		'account' => $this->getVa()
-	    	);
+	    	];
 	    }
 	    
 	    /**
