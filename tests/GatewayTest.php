@@ -42,7 +42,6 @@
 	        $response = $this->gateway->purchase($this->options)->send();
 
 	        $this->assertInstanceOf('Omnipay\iPaymu\Message\PurchaseResponse', $response);
-	        // $this->assertSame('10000', $response->getPrice());
 	        $this->assertTrue($response->isSuccessful());
 	        $this->assertTrue($response->isRedirect());
 	        $this->assertSame(null, $response->getTransactionReference());
@@ -61,7 +60,6 @@
 	        $this->assertSame('Total price min Rp 5000 and max Rp 999999999', $response->getMessage());
 	        $this->assertSame(400, $response->getCode());
 	        $this->assertSame(null, $response->getTransactionReference());
-	        // $this->assertSame('10000', $response->getData()); // ?
 	    }
 
 	    public function testCompletePurchase(): void
