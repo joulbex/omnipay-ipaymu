@@ -203,7 +203,12 @@
 
 	    public function setPaymentChannel($paymentChannel)
 	    {
-	        return $this->setParameter('paymentChannel', $paymentChannel);
+	        return $this->setParameter('paymentChannel', strtolower($paymentChannel));
+	    }
+
+	    public function setPaymentMethod($paymentMethod)
+	    {
+	        return $this->setParameter('paymentMethod', strtolower($paymentMethod));
 	    }
 
 	    public function isCOD()
