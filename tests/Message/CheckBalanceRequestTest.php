@@ -18,12 +18,12 @@
 	        	'va' => 'test_va',
 		        'apiKey' => 'test_api_key'
 	        ];
+
+	        $this->request->initialize($this->options);
 	    }
 
 	    public function testGetData(): void
 	    {
-	        $this->request->initialize($this->options);
-
 	        $data = $this->request->getData();
 
 	        $this->assertSame('test_va', $data['account']);

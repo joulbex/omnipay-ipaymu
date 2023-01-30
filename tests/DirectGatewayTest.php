@@ -53,4 +53,56 @@
 	        $this->assertSame(400, $response->getCode());
 	        $this->assertSame(null, $response->getTransactionReference());
 	    }
+
+	    public function testCompletePurchaseSuccess(): void
+	    {
+	    	$this->getHttpRequest()->request->replace(
+	            [
+	                'trx_id' => '1234',
+				    'status' => 'berhasil',
+				    'status_code' => '1',
+				    'sid' => '59A5EF83-406E-42AF-9CC6-73D6B110CE67',
+				    'reference_id' => 'merchant_12345'
+	            ]
+	        );
+
+	        $request = $this->gateway->completePurchase();
+	        $this->assertInstanceOf('Omnipay\iPaymu\Message\CompletePurchaseRequest', $request);
+
+	        $response = $request->send();
+
+	        $this->assertInstanceOf('Omnipay\iPaymu\Message\CompletePurchaseResponse', $response);
+	        $this->assertTrue($response->isSuccessful());
+	        $this->assertFalse($response->isPending());
+	        $this->assertFalse($response->isCancelled());
+	        $this->assertSame('1234', $response->getTransactionReference());
+	        $this->assertSame('59A5EF83-406E-42AF-9CC6-73D6B110CE67', $response->getSessionId());
+	        $this->assertSame('berhasil', $response->getMessage());
+	        $this->assertSame('1', $response->getCode());
+	        $this->assertSame('merchant_12345', $response->getTransactionId());
+	    }
+
+	    public function testCompletePurchaseError(): void
+	    {
+	    	$this->getHttpRequest()->request->replace(
+	            [
+	                'wrong_post_data' => '1'
+	            ]
+	        );
+
+	        $request = $this->gateway->completePurchase();
+	        $this->assertInstanceOf('Omnipay\iPaymu\Message\CompletePurchaseRequest', $request);
+
+	        $response = $request->send();
+
+	        $this->assertInstanceOf('Omnipay\iPaymu\Message\CompletePurchaseResponse', $response);
+	        $this->assertFalse($response->isSuccessful());
+	        $this->assertFalse($response->isPending());
+	        $this->assertFalse($response->isCancelled());
+	        $this->assertSame(null, $response->getTransactionReference());
+	        $this->assertSame(null, $response->getSessionId());
+	        $this->assertSame(null, $response->getMessage());
+	        $this->assertSame(null, $response->getCode());
+	        $this->assertSame(null, $response->getTransactionId());
+	    }
 	}

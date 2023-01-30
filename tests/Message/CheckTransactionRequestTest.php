@@ -17,12 +17,12 @@
 	        $this->options = [
 		        'transactionReference' => '9974623'
 	        ];
+
+	        $this->request->initialize($this->options);
 	    }
 
 	    public function testGetData(): void
 	    {
-	        $this->request->initialize($this->options);
-
 	        $data = $this->request->getData();
 
 	        $this->assertSame('9974623', $data['transactionId']);
