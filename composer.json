@@ -35,5 +35,10 @@
         "check-style": "phpcs -p --standard=PSR2 src/",
         "fix-style": "phpcbf -p --standard=PSR2 src/"
     },
+    "config": {
+        "allow-plugins": {
+            "php-http/discovery": false
+        }
+    },
     "prefer-stable": true
 }
